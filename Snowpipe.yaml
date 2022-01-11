@@ -1,0 +1,132 @@
+swagger: '2.0'
+info: {title: Snowpipe, description: 'Snowpipe is Snowflake’s continuous data ingestion
+    service. Snowpipe loads data within minutes after files are added to a stage and
+    submitted for ingestion. With Snowpipe’s serverless compute model, Snowflake manages
+    load capacity, ensuring optimal compute resources to meet demand. In short, Snowpipe
+    provides a “pipeline” for loading fresh data in micro-batches as soon as it’s
+    available.', version: '1.0'}
+host: account.snowflakecomputing.com
+basePath: /
+schemes: [https]
+consumes: []
+produces: []
+paths:
+  /v1/data/pipes/{pipeName}/insertFiles:
+    post:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              requestID: {type: string, description: requestID}
+              status: {type: string, description: status}
+      summary: Insert files
+      description: Informs Snowflake about the files to be ingested into a table.
+        A successful response from this endpoint means that Snowflake has recorded
+        the list of files to add to the table. It does not necessarily mean the files
+        have been ingested
+      operationId: InsertFiles
+      parameters:
+      - {name: pipeName, in: path, required: true, type: string}
+      - {name: requestId, in: query, required: false, type: string}
+      - name: body
+        in: body
+        required: false
+        schema:
+          type: object
+          properties:
+            files:
+              type: array
+              items:
+                type: object
+                properties:
+                  path: {type: string, description: path}
+              description: files
+  /v1/data/pipes/{pipeName}/insertReport:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              pipe: {type: string, description: pipe}
+              completeResult: {type: boolean, description: completeResult}
+              nextBeginMark: {type: string, description: nextBeginMark}
+              files:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    path: {type: string, description: path}
+                    stageLocation: {type: string, description: stageLocation}
+                    fileSize: {type: integer, format: int32, description: fileSize}
+                    timeReceived: {type: string, description: timeReceived}
+                    lastInsertTime: {type: string, description: lastInsertTime}
+                    rowsInserted: {type: integer, format: int32, description: rowsInserted}
+                    rowsParsed: {type: integer, format: int32, description: rowsParsed}
+                    errorsSeen: {type: integer, format: int32, description: errorsSeen}
+                    errorLimit: {type: integer, format: int32, description: errorLimit}
+                    complete: {type: boolean, description: complete}
+                    status: {type: string, description: status}
+                description: files
+      summary: Insert report
+      description: Retrieves a report of files submitted via insertFiles whose contents
+        were recently ingested into a table. Note that for large files, this may only
+        be part of the file.
+      operationId: InsertReport
+      parameters:
+      - {name: pipeName, in: path, required: true, type: string}
+      - {name: requestId, in: query, required: false, type: string}
+      - {name: beginMark, in: query, required: false, type: string}
+  /v1/data/pipes/{pipeName}/loadHistoryScan:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              pipe: {type: string, description: pipe}
+              completeResult: {type: boolean, description: completeResult}
+              startTimeInclusive: {type: string, description: startTimeInclusive}
+              endTimeExclusive: {type: string, description: endTimeExclusive}
+              rangeStartTime: {type: string, description: rangeStartTime}
+              rangeEndTime: {type: string, description: rangeEndTime}
+              files:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    path: {type: string, description: path}
+                    stageLocation: {type: string, description: stageLocation}
+                    fileSize: {type: integer, format: int32, description: fileSize}
+                    timeReceived: {type: string, description: timeReceived}
+                    lastInsertTime: {type: string, description: lastInsertTime}
+                    rowsInserted: {type: integer, format: int32, description: rowsInserted}
+                    rowsParsed: {type: integer, format: int32, description: rowsParsed}
+                    errorsSeen: {type: integer, format: int32, description: errorsSeen}
+                    errorLimit: {type: integer, format: int32, description: errorLimit}
+                    complete: {type: boolean, description: complete}
+                    status: {type: string, description: status}
+                description: files
+      summary: Load history scan
+      description: Fetches a report about ingested files whose contents have been
+        added to table. Note that for large files, this may only be part of the file.
+        This endpoint differs from insertReport in that it views the history between
+        two points in time.
+      operationId: LoadHistoryScan
+      parameters:
+      - {name: pipeName, in: path, required: true, type: string}
+      - {name: startTimeInclusive, in: query, required: false, type: string}
+      - {name: endTimeExclusive, in: query, required: false, type: string}
+      - {name: requestId, in: query, required: false, type: string}
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  API Key: {type: apiKey, in: header, name: jwt_token}
+security:
+- API Key: []
+tags: []
