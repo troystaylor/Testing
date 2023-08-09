@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: eCellar Exchange REST API
+  title: eCellar
   description: >-
     Serve your customers from online to tasting room with ease using a single,
     all-in-one web-based CRM and POS platform that's available anywhere on any
