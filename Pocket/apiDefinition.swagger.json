@@ -1,0 +1,95 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pocket",
+    "description": "Pocket, previously known as Read It Later, is a social bookmarking service for storing, sharing and discovering web bookmarks.",
+    "version": "1.0"
+  },
+  "host": "getpocket.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/v3/oauth/request": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "request_token": {
+                  "type": "string",
+                  "description": "request_token"
+                },
+                "ACTION_REQUIRED": {
+                  "type": "string",
+                  "description": "ACTION_REQUIRED"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get request token",
+        "description": "Retrieve a request token and the URL to sign in to the app.",
+        "operationId": "RequestTokenPost",
+        "parameters": [
+          {
+            "name": "consumer_key",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/v3/oauth/authorize": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "access_token": {
+                  "type": "string",
+                  "description": "access_token"
+                },
+                "username": {
+                  "type": "string",
+                  "description": "username"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get access token",
+        "description": "Retrieve an access token using the consumer key and request token",
+        "operationId": "AccessTokenPost",
+        "parameters": [
+          {
+            "name": "consumer_key",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "request_token",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {},
+  "security": [],
+  "tags": []
+}
