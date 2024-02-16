@@ -3,31 +3,42 @@
   "info": {
     "title": "Pocket",
     "description": "Pocket, previously known as Read It Later, is a social bookmarking service for storing, sharing and discovering web bookmarks.",
-    "version": "1.0"
+    "version": "1.0",
+    "contact": {
+      "name": "Troy Taylor",
+      "url": "https://www.hitachisolutions.com",
+      "email": "ttaylor@hitachisolutions.com"
+    }
   },
   "host": "getpocket.com",
   "basePath": "/",
   "schemes": [
     "https"
   ],
-  "consumes": [],
-  "produces": [],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/v3/oauth/request": {
       "post": {
         "responses": {
-          "default": {
+          "200": {
             "description": "default",
             "schema": {
               "type": "object",
               "properties": {
                 "request_token": {
                   "type": "string",
-                  "description": "request_token"
+                  "description": "The request token.",
+                  "title": "Request Token"
                 },
                 "ACTION_REQUIRED": {
                   "type": "string",
-                  "description": "ACTION_REQUIRED"
+                  "description": "The ACTION REQUIRED step to perform before calling the Get access token action.",
+                  "title": "ACTION REQUIRED"
                 }
               }
             }
@@ -40,6 +51,8 @@
           {
             "name": "consumer_key",
             "in": "header",
+            "x-ms-summary": "Consumer Key",
+            "description": "Your consumer key.",
             "type": "string",
             "required": true
           }
@@ -49,18 +62,20 @@
     "/v3/oauth/authorize": {
       "post": {
         "responses": {
-          "default": {
+          "200": {
             "description": "default",
             "schema": {
               "type": "object",
               "properties": {
                 "access_token": {
                   "type": "string",
-                  "description": "access_token"
+                  "description": "The access token.",
+                  "title": "Access Token"
                 },
                 "username": {
                   "type": "string",
-                  "description": "username"
+                  "description": "Your username.",
+                  "title": "Username"
                 }
               }
             }
@@ -73,16 +88,633 @@
           {
             "name": "consumer_key",
             "in": "header",
+            "x-ms-summary": "Consumer Key",
+            "description": "Your consumer key.",
             "type": "string",
             "required": true
           },
           {
             "name": "request_token",
             "in": "header",
+            "x-ms-summary": "Request Token",
+            "description": "The request token.",
             "type": "string",
             "required": true
           }
         ]
+      }
+    },
+    "/v3/add": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "item_id": {
+                      "type": "string",
+                      "description": "The item identifier.",
+                      "title": "Item ID"
+                    },
+                    "normal_url": {
+                      "type": "string",
+                      "description": "The normal URL address.",
+                      "title": "Normal URL"
+                    },
+                    "resolved_id": {
+                      "type": "string",
+                      "description": "The resolved identifier.",
+                      "title": "Resolved ID"
+                    },
+                    "resolved_url": {
+                      "type": "string",
+                      "description": "The resolved URL address.",
+                      "title": "Resolved URL"
+                    },
+                    "domain_id": {
+                      "type": "string",
+                      "description": "The domain identifier.",
+                      "title": "Domain ID"
+                    },
+                    "origin_domain_id": {
+                      "type": "string",
+                      "description": "The origin domain identifier.",
+                      "title": "Origin Domain ID"
+                    },
+                    "response_code": {
+                      "type": "string",
+                      "description": "The response code.",
+                      "title": "Response Code"
+                    },
+                    "mime_type": {
+                      "type": "string",
+                      "description": "The MIME type.",
+                      "title": "MIME Type"
+                    },
+                    "content_length": {
+                      "type": "string",
+                      "description": "The content length.",
+                      "title": "Content Length"
+                    },
+                    "encoding": {
+                      "type": "string",
+                      "description": "The encoding.",
+                      "title": "Encoding"
+                    },
+                    "date_resolved": {
+                      "type": "string",
+                      "description": "The date resolved.",
+                      "title": "Date Resolved"
+                    },
+                    "date_published": {
+                      "type": "string",
+                      "description": "The date published.",
+                      "title": "Date Published"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The title.",
+                      "title": "Title"
+                    },
+                    "excerpt": {
+                      "type": "string",
+                      "description": "The excerpt.",
+                      "title": "Excerpt"
+                    },
+                    "word_count": {
+                      "type": "string",
+                      "description": "The word count.",
+                      "title": "Word Count"
+                    },
+                    "has_image": {
+                      "type": "string",
+                      "description": "Whether has image. '1' is true, '0' is false.",
+                      "title": "Has Image"
+                    },
+                    "has_video": {
+                      "type": "string",
+                      "description": "Whether has video. '1' is true, '0' is false.",
+                      "title": "Has Video"
+                    },
+                    "is_index": {
+                      "type": "string",
+                      "description": "Whether is index. '1' is true, '0' is false.",
+                      "title": "Is Index"
+                    },
+                    "is_article": {
+                      "type": "string",
+                      "description": "Whether is article. '1' is true, '0' is false.",
+                      "title": "Is Article"
+                    },
+                    "authors": {
+                      "type": "string",
+                      "description": "The authors.",
+                      "title": "Authors"
+                    },
+                    "images": {
+                      "type": "array",
+                      "description": "The images.",
+                      "title": "Images",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "videos": {
+                      "type": "array",
+                      "description": "The videos.",
+                      "title": "Videos",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "title": "Item"
+                },
+                "status": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status.",
+                  "title": "Status"
+                }
+              }
+            },
+            "headers": {
+              "X-Error": {
+                "description": "The error.",
+                "x-ms-summary": "Error",
+                "type": "string"
+              },
+              "X-Error-Code": {
+                "description": "The error code.",
+                "x-ms-summary": "Error Code",
+                "type": "integer"
+              },
+              "X-Limit-User-Limit": {
+                "description": "The limit user limit.",
+                "x-ms-summary": "Limit User Limit",
+                "type": "integer"
+              },
+              "X-Limit-User-Remaining": {
+                "description": "The limit user remaining.",
+                "x-ms-summary": "Limit User Remaining",
+                "type": "integer"
+              },
+              "X-Limit-User-Reset": {
+                "description": "The limit user reset.",
+                "x-ms-summary": "Limit User Reset",
+                "type": "integer"
+              },
+              "X-Limit-Key-Limit": {
+                "description": "The limit key limit.",
+                "x-ms-summary": "Limit Key Limit",
+                "type": "integer"
+              },
+              "X-Limit-Key-Remaining": {
+                "description": "The limit key remaining.",
+                "x-ms-summary": "Limit Key Remaining",
+                "type": "integer"
+              },
+              "X-Limit-Key-Reset": {
+                "description": "The limit key reset.",
+                "x-ms-summary": "Limit-Key-Reset",
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "summary": "Add a single item",
+        "description": "This action saves an item to your Pocket list.",
+        "operationId": "AddPost",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "description": "The URL address.",
+                  "title": "URL"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title.",
+                  "title": "Title"
+                },
+                "tags": {
+                  "type": "string",
+                  "description": "The tags.",
+                  "title": "Tags"
+                },
+                "time": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The time.",
+                  "title": "Time"
+                },
+                "consumer_key": {
+                  "type": "string",
+                  "description": "Your consumer key.",
+                  "title": "Consumer Key"
+                },
+                "access_token": {
+                  "type": "string",
+                  "description": "The access token.",
+                  "title": "Access Token"
+                }
+              },
+              "required": [
+                "url",
+                "access_token",
+                "consumer_key"
+              ]
+            }
+          }
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "AddPost",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
+      }
+    },
+    "/v3/send": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "action_results": {
+                  "type": "array",
+                  "items": {
+                    "type": "boolean"
+                  },
+                  "description": "The action results.",
+                  "title": "Action Results"
+                },
+                "status": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status.",
+                  "title": "Status"
+                }
+              }
+            },
+            "headers": {
+              "X-Error": {
+                "description": "The error.",
+                "x-ms-summary": "Error",
+                "type": "string"
+              },
+              "X-Error-Code": {
+                "description": "The error code.",
+                "x-ms-summary": "Error Code",
+                "type": "integer"
+              },
+              "X-Limit-User-Limit": {
+                "description": "The limit user limit.",
+                "x-ms-summary": "Limit User Limit",
+                "type": "integer"
+              },
+              "X-Limit-User-Remaining": {
+                "description": "The limit user remaining.",
+                "x-ms-summary": "Limit User Remaining",
+                "type": "integer"
+              },
+              "X-Limit-User-Reset": {
+                "description": "The limit user reset.",
+                "x-ms-summary": "Limit User Reset",
+                "type": "integer"
+              },
+              "X-Limit-Key-Limit": {
+                "description": "The limit key limit.",
+                "x-ms-summary": "Limit Key Limit",
+                "type": "integer"
+              },
+              "X-Limit-Key-Remaining": {
+                "description": "The limit key remaining.",
+                "x-ms-summary": "Limit Key Remaining",
+                "type": "integer"
+              },
+              "X-Limit-Key-Reset": {
+                "description": "The limit key reset.",
+                "x-ms-summary": "Limit-Key-Reset",
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "summary": "Modify list",
+        "description": "This action allows you to make a change or batch several changes to a user\u2019s list or Pocket data.",
+        "operationId": "ModifyGet",
+        "parameters": [
+          {
+            "name": "actions",
+            "in": "query",
+            "x-ms-summary": "Actions",
+            "description": "The actions.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "consumer_key",
+            "in": "query",
+            "x-ms-summary": "Consumer Key",
+            "description": "Your consumer key.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "x-ms-summary": "Access Token",
+            "description": "The access token.",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/v3/get": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status.",
+                  "title": "Status"
+                },
+                "list": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "object",
+                      "properties": {
+                        "item_id": {
+                          "type": "string",
+                          "description": "The item identifier.",
+                          "title": "Item ID"
+                        },
+                        "resolved_id": {
+                          "type": "string",
+                          "description": "The resolved identifier.",
+                          "title": "Resolved ID"
+                        },
+                        "given_url": {
+                          "type": "string",
+                          "description": "The given URL address.",
+                          "title": "Given URL"
+                        },
+                        "given_title": {
+                          "type": "string",
+                          "description": "The given title.",
+                          "title": "Given Title"
+                        },
+                        "favorite": {
+                          "type": "string",
+                          "description": "The favorite.",
+                          "title": "Favorite"
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The status.",
+                          "title": "Status"
+                        },
+                        "resolved_title": {
+                          "type": "string",
+                          "description": "The resolved title.",
+                          "title": "Resolved Title"
+                        },
+                        "resolved_url": {
+                          "type": "string",
+                          "description": "The resolved URL address.",
+                          "title": "Resolved URL"
+                        },
+                        "excerpt": {
+                          "type": "string",
+                          "description": "The excerpt.",
+                          "title": "Excerpt"
+                        },
+                        "is_article": {
+                          "type": "string",
+                          "description": "Whether is article. '1' is true, '0' is false.",
+                          "title": "Is Article"
+                        },
+                        "has_video": {
+                          "type": "string",
+                          "description": "Whether has video. '1' is true, '0' is false.",
+                          "title": "Has Video"
+                        },
+                        "has_image": {
+                          "type": "string",
+                          "description": "Whether has image. '1' is true, '0' is false.",
+                          "title": "Has Image"
+                        },
+                        "word_count": {
+                          "type": "string",
+                          "description": "The word count.",
+                          "title": "Word Count"
+                        },
+                        "images": {
+                          "type": "object",
+                          "properties": {},
+                          "description": "The images object.",
+                          "title": "Images"
+                        },
+                        "videos": {
+                          "type": "object",
+                          "properties": {},
+                          "description": "The videos object.",
+                          "title": "Videos"
+                        }
+                      },
+                      "title": "ID"
+                    }
+                  },
+                  "title": "List"
+                }
+              }
+            },
+            "headers": {
+              "X-Error": {
+                "description": "The error.",
+                "x-ms-summary": "Error",
+                "type": "string"
+              },
+              "X-Error-Code": {
+                "description": "The error code.",
+                "x-ms-summary": "Error Code",
+                "type": "integer"
+              },
+              "X-Limit-User-Limit": {
+                "description": "The limit user limit.",
+                "x-ms-summary": "Limit User Limit",
+                "type": "integer"
+              },
+              "X-Limit-User-Remaining": {
+                "description": "The limit user remaining.",
+                "x-ms-summary": "Limit User Remaining",
+                "type": "integer"
+              },
+              "X-Limit-User-Reset": {
+                "description": "The limit user reset.",
+                "x-ms-summary": "Limit User Reset",
+                "type": "integer"
+              },
+              "X-Limit-Key-Limit": {
+                "description": "The limit key limit.",
+                "x-ms-summary": "Limit Key Limit",
+                "type": "integer"
+              },
+              "X-Limit-Key-Remaining": {
+                "description": "The limit key remaining.",
+                "x-ms-summary": "Limit Key Remaining",
+                "type": "integer"
+              },
+              "X-Limit-Key-Reset": {
+                "description": "The limit key reset.",
+                "x-ms-summary": "Limit-Key-Reset",
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "summary": "Retrieve data",
+        "description": "This action retrieves a list of items based on the parameters provided.",
+        "operationId": "RetrievePost",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "consumer_key": {
+                  "type": "string",
+                  "description": "Your consumer key.",
+                  "title": "Consumer Key"
+                },
+                "access_token": {
+                  "type": "string",
+                  "description": "The access token.",
+                  "title": "Access Token"
+                },
+                "state": {
+                  "type": "string",
+                  "description": "The item state.",
+                  "title": "State",
+                  "default": "unread",
+                  "enum": [
+                    "unread",
+                    "archived",
+                    "all"
+                  ]
+                },
+                "favorite": {
+                  "type": "integer",
+                  "description": "Whether favorite. '1' is true, '0' is false.",
+                  "title": "Favorite",
+                  "default": 0,
+                  "enum": [
+                    0,
+                    1
+                  ]
+                },
+                "tag": {
+                  "type": "string",
+                  "description": "The tag.",
+                  "title": "Tag",
+                  "default": "_untagged"
+                },
+                "contentType": {
+                  "type": "string",
+                  "description": "The content type.",
+                  "title": "Content Type",
+                  "enum": [
+                    "article",
+                    "video",
+                    "image"
+                  ]
+                },
+                "sort": {
+                  "type": "string",
+                  "description": "The sort method.",
+                  "title": "Sort",
+                  "enum": [
+                    "newest",
+                    "oldest",
+                    "title",
+                    "site"
+                  ]
+                },
+                "detailType": {
+                  "type": "string",
+                  "description": "The detail type.",
+                  "title": "Detail Type",
+                  "enum": [
+                    "simple",
+                    "complete"
+                  ]
+                },
+                "search": {
+                  "type": "string",
+                  "description": "The search.",
+                  "title": "Search"
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain.",
+                  "title": "Domain"
+                },
+                "since": {
+                  "type": "string",
+                  "description": "The since.",
+                  "title": "Since"
+                },
+                "count": {
+                  "type": "string",
+                  "description": "The count.",
+                  "title": "Count"
+                },
+                "offset": {
+                  "type": "integer",
+                  "description": "The offset.",
+                  "title": "Offset"
+                }
+              }
+            }
+          }
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "RetrievePost",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
       }
     }
   },
@@ -91,5 +723,24 @@
   "responses": {},
   "securityDefinitions": {},
   "security": [],
-  "tags": []
+  "tags": [],
+  "x-ms-openai-manifest": {
+    "humanName": "Pocket",
+    "modelDescription": "This is a Copilot plugin for the Pocket read later social bookmarking service.",
+    "contactEmail": "ttaylor@hitachisolutions.com"
+  },
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://getpocket.com/home"
+    },
+    {
+      "propertyName": "Privacy policy",
+      "propertyValue": "https://getpocket.com/privacy"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Social Media"
+    }
+  ]
 }
