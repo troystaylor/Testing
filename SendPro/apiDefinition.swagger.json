@@ -1,0 +1,41 @@
+swagger: '2.0'
+info:
+  title: SendPro
+  description: ''
+  version: '1.0'
+host: api.flowmailer.net
+basePath: /
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /{account_id}/sender_domains:
+    get:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Get sender domains
+      description: List sender domains by account.
+      operationId: SenderDomainsGet
+      parameters:
+        - name: clientID
+          in: header
+          required: true
+          type: string
+        - name: clientSecret
+          in: header
+          required: true
+          type: string
+          format: password
+        - name: account_id
+          in: path
+          required: true
+          type: string
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions: {}
+security: []
+tags: []
