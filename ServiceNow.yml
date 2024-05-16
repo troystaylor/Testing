@@ -1,0 +1,3513 @@
+swagger: '2.0'
+info:
+  title: ServiceNow Incidents
+  description: ''
+  version: '1.0'
+host: service-now.com
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /api/now/table/incident:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    parent:
+                      type: string
+                      description: parent
+                    made_sla:
+                      type: string
+                      description: made_sla
+                    caused_by:
+                      type: string
+                      description: caused_by
+                    watch_list:
+                      type: string
+                      description: watch_list
+                    upon_reject:
+                      type: string
+                      description: upon_reject
+                    sys_updated_on:
+                      type: string
+                      description: sys_updated_on
+                    child_incidents:
+                      type: string
+                      description: child_incidents
+                    hold_reason:
+                      type: string
+                      description: hold_reason
+                    origin_table:
+                      type: string
+                      description: origin_table
+                    task_effective_number:
+                      type: string
+                      description: task_effective_number
+                    approval_history:
+                      type: string
+                      description: approval_history
+                    number:
+                      type: string
+                      description: number
+                    resolved_by:
+                      type: string
+                      description: resolved_by
+                    sys_updated_by:
+                      type: string
+                      description: sys_updated_by
+                    opened_by:
+                      type: string
+                      description: opened_by
+                    user_input:
+                      type: string
+                      description: user_input
+                    sys_created_on:
+                      type: string
+                      description: sys_created_on
+                    sys_domain:
+                      type: string
+                      description: sys_domain
+                    state:
+                      type: string
+                      description: state
+                    route_reason:
+                      type: string
+                      description: route_reason
+                    sys_created_by:
+                      type: string
+                      description: sys_created_by
+                    knowledge:
+                      type: string
+                      description: knowledge
+                    order:
+                      type: string
+                      description: order
+                    calendar_stc:
+                      type: string
+                      description: calendar_stc
+                    closed_at:
+                      type: string
+                      description: closed_at
+                    cmdb_ci:
+                      type: string
+                      description: cmdb_ci
+                    delivery_plan:
+                      type: string
+                      description: delivery_plan
+                    contract:
+                      type: string
+                      description: contract
+                    impact:
+                      type: string
+                      description: impact
+                    active:
+                      type: string
+                      description: active
+                    work_notes_list:
+                      type: string
+                      description: work_notes_list
+                    business_service:
+                      type: string
+                      description: business_service
+                    business_impact:
+                      type: string
+                      description: business_impact
+                    priority:
+                      type: string
+                      description: priority
+                    sys_domain_path:
+                      type: string
+                      description: sys_domain_path
+                    rfc:
+                      type: string
+                      description: rfc
+                    time_worked:
+                      type: string
+                      description: time_worked
+                    expected_start:
+                      type: string
+                      description: expected_start
+                    opened_at:
+                      type: string
+                      description: opened_at
+                    business_duration:
+                      type: string
+                      description: business_duration
+                    group_list:
+                      type: string
+                      description: group_list
+                    work_end:
+                      type: string
+                      description: work_end
+                    caller_id:
+                      type: string
+                      description: caller_id
+                    reopened_time:
+                      type: string
+                      description: reopened_time
+                    resolved_at:
+                      type: string
+                      description: resolved_at
+                    approval_set:
+                      type: string
+                      description: approval_set
+                    subcategory:
+                      type: string
+                      description: subcategory
+                    work_notes:
+                      type: string
+                      description: work_notes
+                    universal_request:
+                      type: string
+                      description: universal_request
+                    short_description:
+                      type: string
+                      description: short_description
+                    close_code:
+                      type: string
+                      description: close_code
+                    correlation_display:
+                      type: string
+                      description: correlation_display
+                    delivery_task:
+                      type: string
+                      description: delivery_task
+                    work_start:
+                      type: string
+                      description: work_start
+                    assignment_group:
+                      type: string
+                      description: assignment_group
+                    additional_assignee_list:
+                      type: string
+                      description: additional_assignee_list
+                    business_stc:
+                      type: string
+                      description: business_stc
+                    cause:
+                      type: string
+                      description: cause
+                    description:
+                      type: string
+                      description: description
+                    origin_id:
+                      type: string
+                      description: origin_id
+                    calendar_duration:
+                      type: string
+                      description: calendar_duration
+                    close_notes:
+                      type: string
+                      description: close_notes
+                    notify:
+                      type: string
+                      description: notify
+                    service_offering:
+                      type: string
+                      description: service_offering
+                    sys_class_name:
+                      type: string
+                      description: sys_class_name
+                    closed_by:
+                      type: string
+                      description: closed_by
+                    follow_up:
+                      type: string
+                      description: follow_up
+                    parent_incident:
+                      type: string
+                      description: parent_incident
+                    sys_id:
+                      type: string
+                      description: sys_id
+                    contact_type:
+                      type: string
+                      description: contact_type
+                    reopened_by:
+                      type: string
+                      description: reopened_by
+                    incident_state:
+                      type: string
+                      description: incident_state
+                    urgency:
+                      type: string
+                      description: urgency
+                    problem_id:
+                      type: string
+                      description: problem_id
+                    company:
+                      type: string
+                      description: company
+                    reassignment_count:
+                      type: string
+                      description: reassignment_count
+                    activity_due:
+                      type: string
+                      description: activity_due
+                    assigned_to:
+                      type: string
+                      description: assigned_to
+                    severity:
+                      type: string
+                      description: severity
+                    comments:
+                      type: string
+                      description: comments
+                    approval:
+                      type: string
+                      description: approval
+                    sla_due:
+                      type: string
+                      description: sla_due
+                    comments_and_work_notes:
+                      type: string
+                      description: comments_and_work_notes
+                    due_date:
+                      type: string
+                      description: due_date
+                    sys_mod_count:
+                      type: string
+                      description: sys_mod_count
+                    reopen_count:
+                      type: string
+                      description: reopen_count
+                    sys_tags:
+                      type: string
+                      description: sys_tags
+                    escalation:
+                      type: string
+                      description: escalation
+                    upon_approval:
+                      type: string
+                      description: upon_approval
+                    correlation_id:
+                      type: string
+                      description: correlation_id
+                    location:
+                      type: string
+                      description: location
+                    category:
+                      type: string
+                      description: category
+                description: result
+      summary: Get incidents
+      description: Retrieve existing incident records.
+      operationId: IncidentsGet
+      parameters:
+        - name: sysparm_query
+          in: query
+          required: false
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_pagination_header
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_category
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_no_count
+          in: query
+          required: false
+          type: boolean
+    post:
+      responses:
+        '201':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: object
+                properties:
+                  parent:
+                    type: string
+                    description: parent
+                  made_sla:
+                    type: string
+                    description: made_sla
+                  caused_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: caused_by
+                  watch_list:
+                    type: string
+                    description: watch_list
+                  upon_reject:
+                    type: string
+                    description: upon_reject
+                  sys_updated_on:
+                    type: string
+                    description: sys_updated_on
+                  child_incidents:
+                    type: string
+                    description: child_incidents
+                  hold_reason:
+                    type: string
+                    description: hold_reason
+                  origin_table:
+                    type: string
+                    description: origin_table
+                  task_effective_number:
+                    type: string
+                    description: task_effective_number
+                  approval_history:
+                    type: string
+                    description: approval_history
+                  number:
+                    type: string
+                    description: number
+                  resolved_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: resolved_by
+                  sys_updated_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: sys_updated_by
+                  opened_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: opened_by
+                  user_input:
+                    type: string
+                    description: user_input
+                  sys_created_on:
+                    type: string
+                    description: sys_created_on
+                  sys_domain:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: sys_domain
+                  state:
+                    type: string
+                    description: state
+                  route_reason:
+                    type: string
+                    description: route_reason
+                  sys_created_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: sys_created_by
+                  knowledge:
+                    type: boolean
+                    description: knowledge
+                  order:
+                    type: string
+                    description: order
+                  calendar_stc:
+                    type: string
+                    description: calendar_stc
+                  closed_at:
+                    type: string
+                    description: closed_at
+                  cmdb_ci:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: cmdb_ci
+                  delivery_plan:
+                    type: string
+                    description: delivery_plan
+                  contract:
+                    type: string
+                    description: contract
+                  impact:
+                    type: string
+                    description: impact
+                  active:
+                    type: string
+                    description: active
+                  work_notes_list:
+                    type: string
+                    description: work_notes_list
+                  business_service:
+                    type: string
+                    description: business_service
+                  business_impact:
+                    type: string
+                    description: business_impact
+                  priority:
+                    type: string
+                    description: priority
+                  sys_domain_path:
+                    type: string
+                    description: sys_domain_path
+                  rfc:
+                    type: string
+                    description: rfc
+                  time_worked:
+                    type: string
+                    description: time_worked
+                  expected_start:
+                    type: string
+                    description: expected_start
+                  opened_at:
+                    type: string
+                    description: opened_at
+                  business_duration:
+                    type: string
+                    description: business_duration
+                  group_list:
+                    type: string
+                    description: group_list
+                  work_end:
+                    type: string
+                    description: work_end
+                  caller_id:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: caller_id
+                  reopened_time:
+                    type: string
+                    description: reopened_time
+                  resolved_at:
+                    type: string
+                    description: resolved_at
+                  approval_set:
+                    type: string
+                    description: approval_set
+                  subcategory:
+                    type: string
+                    description: subcategory
+                  work_notes:
+                    type: string
+                    description: work_notes
+                  universal_request:
+                    type: string
+                    description: universal_request
+                  short_description:
+                    type: string
+                    description: short_description
+                  close_code:
+                    type: string
+                    description: close_code
+                  correlation_display:
+                    type: string
+                    description: correlation_display
+                  delivery_task:
+                    type: string
+                    description: delivery_task
+                  work_start:
+                    type: string
+                    description: work_start
+                  assignment_group:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: assignment_group
+                  additional_assignee_list:
+                    type: string
+                    description: additional_assignee_list
+                  business_stc:
+                    type: string
+                    description: business_stc
+                  cause:
+                    type: string
+                    description: cause
+                  description:
+                    type: string
+                    description: description
+                  origin_id:
+                    type: string
+                    description: origin_id
+                  calendar_duration:
+                    type: string
+                    description: calendar_duration
+                  close_notes:
+                    type: string
+                    description: close_notes
+                  notify:
+                    type: string
+                    description: notify
+                  service_offering:
+                    type: string
+                    description: service_offering
+                  sys_class_name:
+                    type: string
+                    description: sys_class_name
+                  closed_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: closed_by
+                  follow_up:
+                    type: string
+                    description: follow_up
+                  parent_incident:
+                    type: string
+                    description: parent_incident
+                  sys_id:
+                    type: string
+                    description: sys_id
+                  contact_type:
+                    type: string
+                    description: contact_type
+                  reopened_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: reopened_by
+                  incident_state:
+                    type: string
+                    description: incident_state
+                  urgency:
+                    type: string
+                    description: urgency
+                  problem_id:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: problem_id
+                  company:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: company
+                  reassignment_count:
+                    type: string
+                    description: reassignment_count
+                  activity_due:
+                    type: string
+                    description: activity_due
+                  assigned_to:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: assigned_to
+                  severity:
+                    type: string
+                    description: severity
+                  comments:
+                    type: string
+                    description: comments
+                  approval:
+                    type: string
+                    description: approval
+                  sla_due:
+                    type: string
+                    description: sla_due
+                  comments_and_work_notes:
+                    type: string
+                    description: comments_and_work_notes
+                  due_date:
+                    type: string
+                    description: due_date
+                  sys_mod_count:
+                    type: string
+                    description: sys_mod_count
+                  reopen_count:
+                    type: string
+                    description: reopen_count
+                  sys_tags:
+                    type: string
+                    description: sys_tags
+                  escalation:
+                    type: string
+                    description: escalation
+                  upon_approval:
+                    type: string
+                    description: upon_approval
+                  correlation_id:
+                    type: string
+                    description: correlation_id
+                  location:
+                    type: string
+                    description: location
+                  category:
+                    type: string
+                    description: category
+                description: result
+      summary: Create incident
+      description: Creates an incident record.
+      operationId: IncidentPost
+      parameters:
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_input_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_auto_sys_field
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              active:
+                type: boolean
+                description: active
+              activity_due:
+                type: string
+                description: activity_due
+              additional_assignee_list:
+                type: string
+                description: additional_assignee_list
+              approval:
+                type: string
+                description: approval
+              approval_history:
+                type: string
+                description: approval_history
+              approval_set:
+                type: string
+                description: approval_set
+              assigned_to:
+                type: string
+                description: assigned_to
+                x-ms-dynamic-values:
+                  operationId: UserGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              assignment_group:
+                type: string
+                description: assignment_group
+                x-ms-dynamic-values:
+                  operationId: GroupsGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              business_duration:
+                type: string
+                description: business_duration
+              business_impact:
+                type: string
+                description: business_impact
+              business_stc:
+                type: integer
+                format: int32
+                description: business_stc
+              business_service:
+                type: string
+                description: business_service
+                x-ms-dynamic-values:
+                  operationId: ServicesGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              calendar_duration:
+                type: string
+                description: calendar_duration
+              calendar_stc:
+                type: integer
+                format: int32
+                description: calendar_stc
+              caller_id:
+                type: string
+                description: caller_id
+                x-ms-dynamic-values:
+                  operationId: UsersGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              category:
+                type: string
+                description: category
+              cause:
+                type: string
+                description: cause
+              caused_by:
+                type: string
+                description: caused_by
+              child_incidents:
+                type: integer
+                format: int32
+                description: child_incidents
+              close_code:
+                type: string
+                description: close_code
+              close_notes:
+                type: string
+                description: close_notes
+              closed_at:
+                type: string
+                description: closed_at
+              closed_by:
+                type: string
+                description: closed_by
+                x-ms-dynamic-values:
+                  operationId: UserGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              cmdb_ci:
+                type: string
+                description: Configuration Item
+                title: Configuration Item
+                x-ms-dynamic-values:
+                  operationId: ConfigurationItemsGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              comments_and_work_notes:
+                type: string
+                description: comments_and_work_notes
+              company:
+                type: string
+                description: company
+                x-ms-dynamic-values:
+                  operationId: CompaniesGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              contact_type:
+                type: string
+                description: contact_type
+              contract:
+                type: string
+                description: contract
+              correlation_display:
+                type: string
+                description: correlation_display
+              correlation_id:
+                type: string
+                description: correlation_id
+              delivery_plan:
+                type: string
+                description: delivery_plan
+              description:
+                type: string
+                description: description
+                title: ''
+                x-ms-visibility: important
+              due_date:
+                type: string
+                description: due_date
+                title: ''
+                format: date-time
+                x-ms-visibility: important
+              escalation:
+                type: integer
+                format: int32
+                description: escalation
+              expected_start:
+                type: string
+                description: expected_start
+              follow_up:
+                type: string
+                description: follow_up
+              group_list:
+                type: string
+                description: group_list
+              hold_reason:
+                type: integer
+                format: int32
+                description: hold_reason
+              impact:
+                type: integer
+                format: int32
+                description: impact
+              incident_state:
+                type: integer
+                format: int32
+                description: incident_state
+              knowledge:
+                type: boolean
+                description: knowledge
+              location:
+                type: string
+                description: location
+              made_sla:
+                type: boolean
+                description: made_sla
+              notify:
+                type: integer
+                format: int32
+                description: notify
+              number:
+                type: string
+                description: number
+              opened_at:
+                type: string
+                description: opened_at
+              opened_by:
+                type: string
+                description: opened_by
+                x-ms-dynamic-values:
+                  operationId: UserGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              order:
+                type: integer
+                format: int32
+                description: order
+              origin_id:
+                type: string
+                description: origin_id
+              origin_table:
+                type: string
+                description: origin_table
+              parent:
+                type: string
+                description: parent
+              parent_incident:
+                type: string
+                description: parent_incident
+              priority:
+                type: integer
+                format: int32
+                description: priority
+              problem_id:
+                type: string
+                description: problem_id
+              reassignment_count:
+                type: integer
+                format: int32
+                description: reassignment_count
+              reopen_count:
+                type: integer
+                format: int32
+                description: reopen_count
+              reopened_by:
+                type: string
+                description: reopened_by
+                x-ms-dynamic-values:
+                  operationId: UserGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              reopened_time:
+                type: string
+                description: reopened_time
+              resolved_at:
+                type: string
+                description: resolved_at
+              resolved_by:
+                type: string
+                description: resolved_by
+                x-ms-dynamic-values:
+                  operationId: UserGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              route_reason:
+                type: integer
+                format: int32
+                description: route_reason
+              service_offering:
+                type: string
+                description: service_offering
+              severity:
+                type: integer
+                format: int32
+                description: severity
+              short_description:
+                type: string
+                description: short_description
+                title: ''
+                x-ms-visibility: important
+              sla_due:
+                type: string
+                description: sla_due
+              state:
+                type: integer
+                format: int32
+                description: state
+              subcategory:
+                type: string
+                description: subcategory
+              sys_class_name:
+                type: string
+                description: sys_class_name
+              sys_created_by:
+                type: string
+                description: sys_created_by
+              sys_created_on:
+                type: string
+                description: sys_created_on
+              sys_domain:
+                type: string
+                description: sys_domain
+                x-ms-dynamic-values:
+                  operationId: GroupsGet
+                  value-path: sys_id
+                  value-collection: result
+                  value-title: name
+              sys_domain_path:
+                type: string
+                description: sys_domain_path
+                title: ''
+              sys_id:
+                type: string
+                format: guid
+                description: sys_id
+              sys_mod_count:
+                type: integer
+                format: int32
+                description: sys_mod_count
+              sys_tags:
+                type: string
+                description: sys_tags
+              sys_updated_by:
+                type: string
+                description: sys_updated_by
+              sys_updated_on:
+                type: string
+                description: sys_updated_on
+              task_effective_number:
+                type: string
+                description: task_effective_number
+              time_worked:
+                type: string
+                description: time_worked
+              universal_request:
+                type: string
+                description: universal_request
+              upon_approval:
+                type: string
+                description: upon_approval
+              upon_reject:
+                type: string
+                description: upon_reject
+              urgency:
+                type: integer
+                format: int32
+                description: urgency
+              user_input:
+                type: string
+                description: user_input
+              watch_list:
+                type: string
+                description: watch_list
+              work_end:
+                type: string
+                description: work_end
+              work_notes:
+                type: string
+                description: work_notes
+              work_notes_list:
+                type: string
+                description: work_notes_list
+              work_start:
+                type: string
+                description: work_start
+  /api/now/table/incident/{sys_id}:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: object
+                properties:
+                  parent:
+                    type: string
+                    description: parent
+                  made_sla:
+                    type: string
+                    description: made_sla
+                  caused_by:
+                    type: string
+                    description: caused_by
+                  watch_list:
+                    type: string
+                    description: watch_list
+                  upon_reject:
+                    type: string
+                    description: upon_reject
+                  sys_updated_on:
+                    type: string
+                    description: sys_updated_on
+                  child_incidents:
+                    type: string
+                    description: child_incidents
+                  hold_reason:
+                    type: string
+                    description: hold_reason
+                  origin_table:
+                    type: string
+                    description: origin_table
+                  task_effective_number:
+                    type: string
+                    description: task_effective_number
+                  approval_history:
+                    type: string
+                    description: approval_history
+                  number:
+                    type: string
+                    description: number
+                  resolved_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: resolved_by
+                  sys_updated_by:
+                    type: string
+                    description: sys_updated_by
+                  opened_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: opened_by
+                  user_input:
+                    type: string
+                    description: user_input
+                  sys_created_on:
+                    type: string
+                    description: sys_created_on
+                  sys_domain:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: sys_domain
+                  state:
+                    type: string
+                    description: state
+                  route_reason:
+                    type: string
+                    description: route_reason
+                  sys_created_by:
+                    type: string
+                    description: sys_created_by
+                  knowledge:
+                    type: string
+                    description: knowledge
+                  order:
+                    type: string
+                    description: order
+                  calendar_stc:
+                    type: string
+                    description: calendar_stc
+                  closed_at:
+                    type: string
+                    description: closed_at
+                  cmdb_ci:
+                    type: string
+                    description: cmdb_ci
+                  delivery_plan:
+                    type: string
+                    description: delivery_plan
+                  contract:
+                    type: string
+                    description: contract
+                  impact:
+                    type: string
+                    description: impact
+                  active:
+                    type: string
+                    description: active
+                  work_notes_list:
+                    type: string
+                    description: work_notes_list
+                  business_service:
+                    type: string
+                    description: business_service
+                  business_impact:
+                    type: string
+                    description: business_impact
+                  priority:
+                    type: string
+                    description: priority
+                  sys_domain_path:
+                    type: string
+                    description: sys_domain_path
+                  rfc:
+                    type: string
+                    description: rfc
+                  time_worked:
+                    type: string
+                    description: time_worked
+                  expected_start:
+                    type: string
+                    description: expected_start
+                  opened_at:
+                    type: string
+                    description: opened_at
+                  business_duration:
+                    type: string
+                    description: business_duration
+                  group_list:
+                    type: string
+                    description: group_list
+                  work_end:
+                    type: string
+                    description: work_end
+                  caller_id:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: caller_id
+                  reopened_time:
+                    type: string
+                    description: reopened_time
+                  resolved_at:
+                    type: string
+                    description: resolved_at
+                  approval_set:
+                    type: string
+                    description: approval_set
+                  subcategory:
+                    type: string
+                    description: subcategory
+                  work_notes:
+                    type: string
+                    description: work_notes
+                  universal_request:
+                    type: string
+                    description: universal_request
+                  short_description:
+                    type: string
+                    description: short_description
+                  close_code:
+                    type: string
+                    description: close_code
+                  correlation_display:
+                    type: string
+                    description: correlation_display
+                  delivery_task:
+                    type: string
+                    description: delivery_task
+                  work_start:
+                    type: string
+                    description: work_start
+                  assignment_group:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: assignment_group
+                  additional_assignee_list:
+                    type: string
+                    description: additional_assignee_list
+                  business_stc:
+                    type: string
+                    description: business_stc
+                  cause:
+                    type: string
+                    description: cause
+                  description:
+                    type: string
+                    description: description
+                  origin_id:
+                    type: string
+                    description: origin_id
+                  calendar_duration:
+                    type: string
+                    description: calendar_duration
+                  close_notes:
+                    type: string
+                    description: close_notes
+                  notify:
+                    type: string
+                    description: notify
+                  service_offering:
+                    type: string
+                    description: service_offering
+                  sys_class_name:
+                    type: string
+                    description: sys_class_name
+                  closed_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: closed_by
+                  follow_up:
+                    type: string
+                    description: follow_up
+                  parent_incident:
+                    type: string
+                    description: parent_incident
+                  sys_id:
+                    type: string
+                    description: sys_id
+                  contact_type:
+                    type: string
+                    description: contact_type
+                  reopened_by:
+                    type: string
+                    description: reopened_by
+                  incident_state:
+                    type: string
+                    description: incident_state
+                  urgency:
+                    type: string
+                    description: urgency
+                  problem_id:
+                    type: string
+                    description: problem_id
+                  company:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: company
+                  reassignment_count:
+                    type: string
+                    description: reassignment_count
+                  activity_due:
+                    type: string
+                    description: activity_due
+                  assigned_to:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: assigned_to
+                  severity:
+                    type: string
+                    description: severity
+                  comments:
+                    type: string
+                    description: comments
+                  approval:
+                    type: string
+                    description: approval
+                  sla_due:
+                    type: string
+                    description: sla_due
+                  comments_and_work_notes:
+                    type: string
+                    description: comments_and_work_notes
+                  due_date:
+                    type: string
+                    description: due_date
+                  sys_mod_count:
+                    type: string
+                    description: sys_mod_count
+                  reopen_count:
+                    type: string
+                    description: reopen_count
+                  sys_tags:
+                    type: string
+                    description: sys_tags
+                  escalation:
+                    type: string
+                    description: escalation
+                  upon_approval:
+                    type: string
+                    description: upon_approval
+                  correlation_id:
+                    type: string
+                    description: correlation_id
+                  location:
+                    type: string
+                    description: location
+                  category:
+                    type: string
+                    description: category
+                description: result
+      summary: Get incident
+      description: Retrieve an inserted incident.
+      operationId: IncidentGet
+      parameters:
+        - name: sys_id
+          in: path
+          required: true
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+    delete:
+      responses:
+        '204':
+          description: default
+          schema:
+            type: string
+      summary: Delete incident
+      description: Deletes an incident.
+      operationId: IncidentDelete
+      parameters:
+        - name: sys_id
+          in: path
+          required: true
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+    patch:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: object
+                properties:
+                  parent:
+                    type: string
+                    description: parent
+                  made_sla:
+                    type: string
+                    description: made_sla
+                  caused_by:
+                    type: string
+                    description: caused_by
+                  watch_list:
+                    type: string
+                    description: watch_list
+                  upon_reject:
+                    type: string
+                    description: upon_reject
+                  sys_updated_on:
+                    type: string
+                    description: sys_updated_on
+                  child_incidents:
+                    type: string
+                    description: child_incidents
+                  hold_reason:
+                    type: string
+                    description: hold_reason
+                  origin_table:
+                    type: string
+                    description: origin_table
+                  task_effective_number:
+                    type: string
+                    description: task_effective_number
+                  approval_history:
+                    type: string
+                    description: approval_history
+                  number:
+                    type: string
+                    description: number
+                  resolved_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: resolved_by
+                  sys_updated_by:
+                    type: string
+                    description: sys_updated_by
+                  opened_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: opened_by
+                  user_input:
+                    type: string
+                    description: user_input
+                  sys_created_on:
+                    type: string
+                    description: sys_created_on
+                  sys_domain:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: sys_domain
+                  state:
+                    type: string
+                    description: state
+                  route_reason:
+                    type: string
+                    description: route_reason
+                  sys_created_by:
+                    type: string
+                    description: sys_created_by
+                  knowledge:
+                    type: string
+                    description: knowledge
+                  order:
+                    type: string
+                    description: order
+                  calendar_stc:
+                    type: string
+                    description: calendar_stc
+                  closed_at:
+                    type: string
+                    description: closed_at
+                  cmdb_ci:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: cmdb_ci
+                  delivery_plan:
+                    type: string
+                    description: delivery_plan
+                  contract:
+                    type: string
+                    description: contract
+                  impact:
+                    type: string
+                    description: impact
+                  active:
+                    type: string
+                    description: active
+                  work_notes_list:
+                    type: string
+                    description: work_notes_list
+                  business_service:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: business_service
+                  business_impact:
+                    type: string
+                    description: business_impact
+                  priority:
+                    type: string
+                    description: priority
+                  sys_domain_path:
+                    type: string
+                    description: sys_domain_path
+                  rfc:
+                    type: string
+                    description: rfc
+                  time_worked:
+                    type: string
+                    description: time_worked
+                  expected_start:
+                    type: string
+                    description: expected_start
+                  opened_at:
+                    type: string
+                    description: opened_at
+                  business_duration:
+                    type: string
+                    description: business_duration
+                  group_list:
+                    type: string
+                    description: group_list
+                  work_end:
+                    type: string
+                    description: work_end
+                  caller_id:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: caller_id
+                  reopened_time:
+                    type: string
+                    description: reopened_time
+                  resolved_at:
+                    type: string
+                    description: resolved_at
+                  approval_set:
+                    type: string
+                    description: approval_set
+                  subcategory:
+                    type: string
+                    description: subcategory
+                  work_notes:
+                    type: string
+                    description: work_notes
+                  universal_request:
+                    type: string
+                    description: universal_request
+                  short_description:
+                    type: string
+                    description: short_description
+                  close_code:
+                    type: string
+                    description: close_code
+                  correlation_display:
+                    type: string
+                    description: correlation_display
+                  delivery_task:
+                    type: string
+                    description: delivery_task
+                  work_start:
+                    type: string
+                    description: work_start
+                  assignment_group:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: assignment_group
+                  additional_assignee_list:
+                    type: string
+                    description: additional_assignee_list
+                  business_stc:
+                    type: string
+                    description: business_stc
+                  cause:
+                    type: string
+                    description: cause
+                  description:
+                    type: string
+                    description: description
+                  origin_id:
+                    type: string
+                    description: origin_id
+                  calendar_duration:
+                    type: string
+                    description: calendar_duration
+                  close_notes:
+                    type: string
+                    description: close_notes
+                  notify:
+                    type: string
+                    description: notify
+                  service_offering:
+                    type: string
+                    description: service_offering
+                  sys_class_name:
+                    type: string
+                    description: sys_class_name
+                  closed_by:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: closed_by
+                  follow_up:
+                    type: string
+                    description: follow_up
+                  parent_incident:
+                    type: string
+                    description: parent_incident
+                  sys_id:
+                    type: string
+                    description: sys_id
+                  contact_type:
+                    type: string
+                    description: contact_type
+                  reopened_by:
+                    type: string
+                    description: reopened_by
+                  incident_state:
+                    type: string
+                    description: incident_state
+                  urgency:
+                    type: string
+                    description: urgency
+                  problem_id:
+                    type: string
+                    description: problem_id
+                  company:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: company
+                  reassignment_count:
+                    type: string
+                    description: reassignment_count
+                  activity_due:
+                    type: string
+                    description: activity_due
+                  assigned_to:
+                    type: object
+                    properties:
+                      link:
+                        type: string
+                        description: link
+                      value:
+                        type: string
+                        description: value
+                    description: assigned_to
+                  severity:
+                    type: string
+                    description: severity
+                  comments:
+                    type: string
+                    description: comments
+                  approval:
+                    type: string
+                    description: approval
+                  sla_due:
+                    type: string
+                    description: sla_due
+                  comments_and_work_notes:
+                    type: string
+                    description: comments_and_work_notes
+                  due_date:
+                    type: string
+                    description: due_date
+                  sys_mod_count:
+                    type: string
+                    description: sys_mod_count
+                  reopen_count:
+                    type: string
+                    description: reopen_count
+                  sys_tags:
+                    type: string
+                    description: sys_tags
+                  escalation:
+                    type: string
+                    description: escalation
+                  upon_approval:
+                    type: string
+                    description: upon_approval
+                  correlation_id:
+                    type: string
+                    description: correlation_id
+                  location:
+                    type: string
+                    description: location
+                  category:
+                    type: string
+                    description: category
+                description: result
+      summary: Update incident
+      description: Updates an existing incident.
+      operationId: IncidentPatch
+      parameters:
+        - name: sys_id
+          in: path
+          required: true
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_input_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_auto_sys_field
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              active:
+                type: boolean
+                description: active
+              activity_due:
+                type: string
+                description: activity_due
+              additional_assignee_list:
+                type: string
+                description: additional_assignee_list
+              approval:
+                type: string
+                description: approval
+              approval_history:
+                type: string
+                description: approval_history
+              approval_set:
+                type: string
+                description: approval_set
+              assigned_to:
+                type: string
+                description: assigned_to
+              assignment_group:
+                type: string
+                description: assignment_group
+              business_duration:
+                type: string
+                description: business_duration
+              business_impact:
+                type: string
+                description: business_impact
+              business_stc:
+                type: integer
+                format: int32
+                description: business_stc
+              business_service:
+                type: string
+                description: business_service
+              calendar_duration:
+                type: string
+                description: calendar_duration
+              calendar_stc:
+                type: integer
+                format: int32
+                description: calendar_stc
+              caller_id:
+                type: string
+                description: caller_id
+              category:
+                type: string
+                description: category
+              cause:
+                type: string
+                description: cause
+              caused_by:
+                type: string
+                description: caused_by
+              child_incidents:
+                type: integer
+                format: int32
+                description: child_incidents
+              close_code:
+                type: string
+                description: close_code
+              close_notes:
+                type: string
+                description: close_notes
+              closed_at:
+                type: string
+                description: closed_at
+              closed_by:
+                type: string
+                description: closed_by
+              cmdb_ci:
+                type: string
+                description: Configuration Item
+              comments_and_work_notes:
+                type: string
+                description: comments_and_work_notes
+              company:
+                type: string
+                description: company
+              contact_type:
+                type: string
+                description: contact_type
+              contract:
+                type: string
+                description: contract
+              correlation_display:
+                type: string
+                description: correlation_display
+              correlation_id:
+                type: string
+                description: correlation_id
+              delivery_plan:
+                type: string
+                description: delivery_plan
+              description:
+                type: string
+                description: description
+              due_date:
+                type: string
+                description: due_date
+              escalation:
+                type: integer
+                format: int32
+                description: escalation
+              expected_start:
+                type: string
+                description: expected_start
+              follow_up:
+                type: string
+                description: follow_up
+              group_list:
+                type: string
+                description: group_list
+              hold_reason:
+                type: integer
+                format: int32
+                description: hold_reason
+              impact:
+                type: integer
+                format: int32
+                description: impact
+              incident_state:
+                type: integer
+                format: int32
+                description: incident_state
+              knowledge:
+                type: boolean
+                description: knowledge
+              location:
+                type: string
+                description: location
+              made_sla:
+                type: boolean
+                description: made_sla
+              notify:
+                type: integer
+                format: int32
+                description: notify
+              number:
+                type: string
+                description: number
+              opened_at:
+                type: string
+                description: opened_at
+              opened_by:
+                type: string
+                description: opened_by
+              order:
+                type: integer
+                format: int32
+                description: order
+              origin_id:
+                type: string
+                description: origin_id
+              origin_table:
+                type: string
+                description: origin_table
+              parent:
+                type: string
+                description: parent
+              parent_incident:
+                type: string
+                description: parent_incident
+              priority:
+                type: integer
+                format: int32
+                description: priority
+              problem_id:
+                type: string
+                description: problem_id
+              reassignment_count:
+                type: integer
+                format: int32
+                description: reassignment_count
+              reopen_count:
+                type: integer
+                format: int32
+                description: reopen_count
+              reopened_by:
+                type: string
+                description: reopened_by
+              reopened_time:
+                type: string
+                description: reopened_time
+              resolved_at:
+                type: string
+                description: resolved_at
+              resolved_by:
+                type: string
+                description: resolved_by
+              route_reason:
+                type: integer
+                format: int32
+                description: route_reason
+              service_offering:
+                type: string
+                description: service_offering
+              severity:
+                type: integer
+                format: int32
+                description: severity
+              short_description:
+                type: string
+                description: short_description
+              sla_due:
+                type: string
+                description: sla_due
+              state:
+                type: integer
+                format: int32
+                description: state
+              subcategory:
+                type: string
+                description: subcategory
+              sys_class_name:
+                type: string
+                description: sys_class_name
+              sys_created_by:
+                type: string
+                description: sys_created_by
+              sys_created_on:
+                type: string
+                description: sys_created_on
+              sys_domain:
+                type: string
+                description: sys_domain
+              sys_domain_path:
+                type: string
+                description: sys_domain_path
+              sys_id:
+                type: string
+                format: guid
+                description: sys_id
+              sys_mod_count:
+                type: integer
+                format: int32
+                description: sys_mod_count
+              sys_tags:
+                type: string
+                description: sys_tags
+              sys_updated_by:
+                type: string
+                description: sys_updated_by
+              sys_updated_on:
+                type: string
+                description: sys_updated_on
+              task_effective_number:
+                type: string
+                description: task_effective_number
+              time_worked:
+                type: string
+                description: time_worked
+              universal_request:
+                type: string
+                description: universal_request
+              upon_approval:
+                type: string
+                description: upon_approval
+              upon_reject:
+                type: string
+                description: upon_reject
+              urgency:
+                type: integer
+                format: int32
+                description: urgency
+              user_input:
+                type: string
+                description: user_input
+              watch_list:
+                type: string
+                description: watch_list
+              work_end:
+                type: string
+                description: work_end
+              work_notes:
+                type: string
+                description: work_notes
+              work_notes_list:
+                type: string
+                description: work_notes_list
+              work_start:
+                type: string
+                description: work_start
+  /api/now/table/sys_user:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    calendar_integration:
+                      type: string
+                      description: calendar_integration
+                    country:
+                      type: string
+                      description: country
+                    user_password:
+                      type: string
+                      description: user_password
+                    last_login_time:
+                      type: string
+                      description: last_login_time
+                    source:
+                      type: string
+                      description: source
+                    sys_updated_on:
+                      type: string
+                      description: sys_updated_on
+                    building:
+                      type: string
+                      description: building
+                    web_service_access_only:
+                      type: string
+                      description: web_service_access_only
+                    notification:
+                      type: string
+                      description: notification
+                    enable_multifactor_authn:
+                      type: string
+                      description: enable_multifactor_authn
+                    sys_updated_by:
+                      type: string
+                      description: sys_updated_by
+                    sys_created_on:
+                      type: string
+                      description: sys_created_on
+                    sys_domain:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: sys_domain
+                    state:
+                      type: string
+                      description: state
+                    vip:
+                      type: string
+                      description: vip
+                    sys_created_by:
+                      type: string
+                      description: sys_created_by
+                    zip:
+                      type: string
+                      description: zip
+                    home_phone:
+                      type: string
+                      description: home_phone
+                    time_format:
+                      type: string
+                      description: time_format
+                    last_login:
+                      type: string
+                      description: last_login
+                    default_perspective:
+                      type: string
+                      description: default_perspective
+                    active:
+                      type: string
+                      description: active
+                    sys_domain_path:
+                      type: string
+                      description: sys_domain_path
+                    cost_center:
+                      type: string
+                      description: cost_center
+                    phone:
+                      type: string
+                      description: phone
+                    name:
+                      type: string
+                      description: name
+                    employee_number:
+                      type: string
+                      description: employee_number
+                    password_needs_reset:
+                      type: string
+                      description: password_needs_reset
+                    gender:
+                      type: string
+                      description: gender
+                    city:
+                      type: string
+                      description: city
+                    failed_attempts:
+                      type: string
+                      description: failed_attempts
+                    user_name:
+                      type: string
+                      description: user_name
+                    roles:
+                      type: string
+                      description: roles
+                    title:
+                      type: string
+                      description: title
+                    sys_class_name:
+                      type: string
+                      description: sys_class_name
+                    sys_id:
+                      type: string
+                      description: sys_id
+                    federated_id:
+                      type: string
+                      description: federated_id
+                    internal_integration_user:
+                      type: string
+                      description: internal_integration_user
+                    ldap_server:
+                      type: string
+                      description: ldap_server
+                    mobile_phone:
+                      type: string
+                      description: mobile_phone
+                    street:
+                      type: string
+                      description: street
+                    company:
+                      type: string
+                      description: company
+                    department:
+                      type: string
+                      description: department
+                    first_name:
+                      type: string
+                      description: first_name
+                    email:
+                      type: string
+                      description: email
+                    introduction:
+                      type: string
+                      description: introduction
+                    preferred_language:
+                      type: string
+                      description: preferred_language
+                    manager:
+                      type: string
+                      description: manager
+                    locked_out:
+                      type: string
+                      description: locked_out
+                    sys_mod_count:
+                      type: string
+                      description: sys_mod_count
+                    last_name:
+                      type: string
+                      description: last_name
+                    photo:
+                      type: string
+                      description: photo
+                    avatar:
+                      type: string
+                      description: avatar
+                    middle_name:
+                      type: string
+                      description: middle_name
+                    sys_tags:
+                      type: string
+                      description: sys_tags
+                    time_zone:
+                      type: string
+                      description: time_zone
+                    schedule:
+                      type: string
+                      description: schedule
+                    date_format:
+                      type: string
+                      description: date_format
+                    location:
+                      type: string
+                      description: location
+                description: result
+      summary: Get users
+      description: Retrieve a list of system users.
+      operationId: UsersGet
+      parameters:
+        - name: sysparm_query
+          in: query
+          required: false
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_pagination_header
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_limit
+          in: query
+          required: false
+          type: integer
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_category
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_no_count
+          in: query
+          required: false
+          type: boolean
+  /api/now/table/sys_user_group:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    parent:
+                      type: string
+                      description: parent
+                    manager:
+                      type: string
+                      description: manager
+                    roles:
+                      type: string
+                      description: roles
+                    sys_mod_count:
+                      type: string
+                      description: sys_mod_count
+                    active:
+                      type: string
+                      description: active
+                    description:
+                      type: string
+                      description: description
+                    source:
+                      type: string
+                      description: source
+                    sys_updated_on:
+                      type: string
+                      description: sys_updated_on
+                    sys_tags:
+                      type: string
+                      description: sys_tags
+                    type:
+                      type: string
+                      description: type
+                    sys_id:
+                      type: string
+                      description: sys_id
+                    sys_updated_by:
+                      type: string
+                      description: sys_updated_by
+                    cost_center:
+                      type: string
+                      description: cost_center
+                    default_assignee:
+                      type: string
+                      description: default_assignee
+                    sys_created_on:
+                      type: string
+                      description: sys_created_on
+                    name:
+                      type: string
+                      description: name
+                    exclude_manager:
+                      type: string
+                      description: exclude_manager
+                    email:
+                      type: string
+                      description: email
+                    include_members:
+                      type: string
+                      description: include_members
+                    sys_created_by:
+                      type: string
+                      description: sys_created_by
+                description: result
+      summary: Get user groups
+      description: Retrieve a list of all user groups.
+      operationId: UserGroupsGet
+      parameters:
+        - name: sysparm_query
+          in: query
+          required: false
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_pagination_header
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_limit
+          in: query
+          required: false
+          type: integer
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_category
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_no_count
+          in: query
+          required: false
+          type: boolean
+  /api/now/table/cmdb_ci:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    attested_date:
+                      type: string
+                      description: attested_date
+                    skip_sync:
+                      type: string
+                      description: skip_sync
+                    operational_status:
+                      type: string
+                      description: operational_status
+                    product_instance_id:
+                      type: string
+                      description: product_instance_id
+                    sys_updated_on:
+                      type: string
+                      description: sys_updated_on
+                    attestation_score:
+                      type: string
+                      description: attestation_score
+                    discovery_source:
+                      type: string
+                      description: discovery_source
+                    first_discovered:
+                      type: string
+                      description: first_discovered
+                    sys_updated_by:
+                      type: string
+                      description: sys_updated_by
+                    due_in:
+                      type: string
+                      description: due_in
+                    sys_created_on:
+                      type: string
+                      description: sys_created_on
+                    sys_domain:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: sys_domain
+                    install_date:
+                      type: string
+                      description: install_date
+                    gl_account:
+                      type: string
+                      description: gl_account
+                    invoice_number:
+                      type: string
+                      description: invoice_number
+                    sys_created_by:
+                      type: string
+                      description: sys_created_by
+                    warranty_expiration:
+                      type: string
+                      description: warranty_expiration
+                    asset_tag:
+                      type: string
+                      description: asset_tag
+                    fqdn:
+                      type: string
+                      description: fqdn
+                    change_control:
+                      type: string
+                      description: change_control
+                    owned_by:
+                      type: string
+                      description: owned_by
+                    checked_out:
+                      type: string
+                      description: checked_out
+                    sys_domain_path:
+                      type: string
+                      description: sys_domain_path
+                    business_unit:
+                      type: string
+                      description: business_unit
+                    delivery_date:
+                      type: string
+                      description: delivery_date
+                    maintenance_schedule:
+                      type: string
+                      description: maintenance_schedule
+                    install_status:
+                      type: string
+                      description: install_status
+                    cost_center:
+                      type: string
+                      description: cost_center
+                    attested_by:
+                      type: string
+                      description: attested_by
+                    supported_by:
+                      type: string
+                      description: supported_by
+                    dns_domain:
+                      type: string
+                      description: dns_domain
+                    name:
+                      type: string
+                      description: name
+                    assigned:
+                      type: string
+                      description: assigned
+                    life_cycle_stage:
+                      type: string
+                      description: life_cycle_stage
+                    purchase_date:
+                      type: string
+                      description: purchase_date
+                    subcategory:
+                      type: string
+                      description: subcategory
+                    short_description:
+                      type: string
+                      description: short_description
+                    assignment_group:
+                      type: string
+                      description: assignment_group
+                    managed_by:
+                      type: string
+                      description: managed_by
+                    managed_by_group:
+                      type: string
+                      description: managed_by_group
+                    can_print:
+                      type: string
+                      description: can_print
+                    last_discovered:
+                      type: string
+                      description: last_discovered
+                    sys_class_name:
+                      type: string
+                      description: sys_class_name
+                    manufacturer:
+                      type: string
+                      description: manufacturer
+                    sys_id:
+                      type: string
+                      description: sys_id
+                    po_number:
+                      type: string
+                      description: po_number
+                    checked_in:
+                      type: string
+                      description: checked_in
+                    sys_class_path:
+                      type: string
+                      description: sys_class_path
+                    life_cycle_stage_status:
+                      type: string
+                      description: life_cycle_stage_status
+                    mac_address:
+                      type: string
+                      description: mac_address
+                    vendor:
+                      type: string
+                      description: vendor
+                    company:
+                      type: string
+                      description: company
+                    justification:
+                      type: string
+                      description: justification
+                    model_number:
+                      type: string
+                      description: model_number
+                    department:
+                      type: string
+                      description: department
+                    assigned_to:
+                      type: string
+                      description: assigned_to
+                    start_date:
+                      type: string
+                      description: start_date
+                    comments:
+                      type: string
+                      description: comments
+                    cost:
+                      type: string
+                      description: cost
+                    attestation_status:
+                      type: string
+                      description: attestation_status
+                    sys_mod_count:
+                      type: string
+                      description: sys_mod_count
+                    monitor:
+                      type: string
+                      description: monitor
+                    serial_number:
+                      type: string
+                      description: serial_number
+                    ip_address:
+                      type: string
+                      description: ip_address
+                    model_id:
+                      type: string
+                      description: model_id
+                    duplicate_of:
+                      type: string
+                      description: duplicate_of
+                    sys_tags:
+                      type: string
+                      description: sys_tags
+                    cost_cc:
+                      type: string
+                      description: cost_cc
+                    order_date:
+                      type: string
+                      description: order_date
+                    schedule:
+                      type: string
+                      description: schedule
+                    support_group:
+                      type: string
+                      description: support_group
+                    environment:
+                      type: string
+                      description: environment
+                    due:
+                      type: string
+                      description: due
+                    attested:
+                      type: string
+                      description: attested
+                    correlation_id:
+                      type: string
+                      description: correlation_id
+                    unverified:
+                      type: string
+                      description: unverified
+                    attributes:
+                      type: string
+                      description: attributes
+                    location:
+                      type: string
+                      description: location
+                    asset:
+                      type: string
+                      description: asset
+                    category:
+                      type: string
+                      description: category
+                    fault_count:
+                      type: string
+                      description: fault_count
+                    lease_id:
+                      type: string
+                      description: lease_id
+                description: result
+      summary: Get configuration items
+      description: Retrieve a list of configuration items.
+      operationId: ConfigurationItemsGet
+      parameters:
+        - name: sysparm_query
+          in: query
+          required: false
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_pagination_header
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_limit
+          in: query
+          required: false
+          type: integer
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_category
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_no_count
+          in: query
+          required: false
+          type: boolean
+  /api/now/table/cmdb_ci_service:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    attested_date:
+                      type: string
+                      description: attested_date
+                    parent:
+                      type: string
+                      description: parent
+                    operational_status:
+                      type: string
+                      description: operational_status
+                    consumer_type:
+                      type: string
+                      description: consumer_type
+                    sys_updated_on:
+                      type: string
+                      description: sys_updated_on
+                    number:
+                      type: string
+                      description: number
+                    published_ref:
+                      type: string
+                      description: published_ref
+                    discovery_source:
+                      type: string
+                      description: discovery_source
+                    first_discovered:
+                      type: string
+                      description: first_discovered
+                    due_in:
+                      type: string
+                      description: due_in
+                    used_for:
+                      type: string
+                      description: used_for
+                    state:
+                      type: string
+                      description: state
+                    gl_account:
+                      type: string
+                      description: gl_account
+                    invoice_number:
+                      type: string
+                      description: invoice_number
+                    sys_created_by:
+                      type: string
+                      description: sys_created_by
+                    warranty_expiration:
+                      type: string
+                      description: warranty_expiration
+                    sla:
+                      type: string
+                      description: sla
+                    owned_by:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: owned_by
+                    checked_out:
+                      type: string
+                      description: checked_out
+                    sys_domain_path:
+                      type: string
+                      description: sys_domain_path
+                    business_unit:
+                      type: string
+                      description: business_unit
+                    version:
+                      type: string
+                      description: version
+                    maintenance_schedule:
+                      type: string
+                      description: maintenance_schedule
+                    cost_center:
+                      type: string
+                      description: cost_center
+                    attested_by:
+                      type: string
+                      description: attested_by
+                    dns_domain:
+                      type: string
+                      description: dns_domain
+                    service_status:
+                      type: string
+                      description: service_status
+                    assigned:
+                      type: string
+                      description: assigned
+                    life_cycle_stage:
+                      type: string
+                      description: life_cycle_stage
+                    portfolio_status:
+                      type: string
+                      description: portfolio_status
+                    purchase_date:
+                      type: string
+                      description: purchase_date
+                    business_need:
+                      type: string
+                      description: business_need
+                    delivery_manager:
+                      type: string
+                      description: delivery_manager
+                    end_date:
+                      type: string
+                      description: end_date
+                    short_description:
+                      type: string
+                      description: short_description
+                    busines_criticality:
+                      type: string
+                      description: busines_criticality
+                    managed_by:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: managed_by
+                    stakeholders:
+                      type: string
+                      description: stakeholders
+                    can_print:
+                      type: string
+                      description: can_print
+                    last_discovered:
+                      type: string
+                      description: last_discovered
+                    service_owner_delegate:
+                      type: string
+                      description: service_owner_delegate
+                    sys_class_name:
+                      type: string
+                      description: sys_class_name
+                    manufacturer:
+                      type: string
+                      description: manufacturer
+                    life_cycle_stage_status:
+                      type: string
+                      description: life_cycle_stage_status
+                    vendor:
+                      type: string
+                      description: vendor
+                    model_number:
+                      type: string
+                      description: model_number
+                    assigned_to:
+                      type: string
+                      description: assigned_to
+                    start_date:
+                      type: string
+                      description: start_date
+                    serial_number:
+                      type: string
+                      description: serial_number
+                    spm_taxonomy_node:
+                      type: string
+                      description: spm_taxonomy_node
+                    price_unit:
+                      type: string
+                      description: price_unit
+                    support_group:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: support_group
+                    correlation_id:
+                      type: string
+                      description: correlation_id
+                    unverified:
+                      type: string
+                      description: unverified
+                    attributes:
+                      type: string
+                      description: attributes
+                    asset:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: asset
+                    skip_sync:
+                      type: string
+                      description: skip_sync
+                    aliases:
+                      type: string
+                      description: aliases
+                    product_instance_id:
+                      type: string
+                      description: product_instance_id
+                    attestation_score:
+                      type: string
+                      description: attestation_score
+                    service_level_requirement:
+                      type: string
+                      description: service_level_requirement
+                    sys_updated_by:
+                      type: string
+                      description: sys_updated_by
+                    sys_created_on:
+                      type: string
+                      description: sys_created_on
+                    sys_domain:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: sys_domain
+                    install_date:
+                      type: string
+                      description: install_date
+                    monitoring_requirements:
+                      type: string
+                      description: monitoring_requirements
+                    asset_tag:
+                      type: string
+                      description: asset_tag
+                    user_group:
+                      type: string
+                      description: user_group
+                    fqdn:
+                      type: string
+                      description: fqdn
+                    spm_service_portfolio:
+                      type: string
+                      description: spm_service_portfolio
+                    change_control:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: change_control
+                    unit_description:
+                      type: string
+                      description: unit_description
+                    business_relation_manager:
+                      type: string
+                      description: business_relation_manager
+                    last_review_date:
+                      type: string
+                      description: last_review_date
+                    business_contact:
+                      type: string
+                      description: business_contact
+                    compatibility_dependencies:
+                      type: string
+                      description: compatibility_dependencies
+                    delivery_date:
+                      type: string
+                      description: delivery_date
+                    install_status:
+                      type: string
+                      description: install_status
+                    supported_by:
+                      type: string
+                      description: supported_by
+                    name:
+                      type: string
+                      description: name
+                    subcategory:
+                      type: string
+                      description: subcategory
+                    price_model:
+                      type: string
+                      description: price_model
+                    assignment_group:
+                      type: string
+                      description: assignment_group
+                    managed_by_group:
+                      type: string
+                      description: managed_by_group
+                    prerequisites:
+                      type: string
+                      description: prerequisites
+                    sys_id:
+                      type: string
+                      description: sys_id
+                    po_number:
+                      type: string
+                      description: po_number
+                    checked_in:
+                      type: string
+                      description: checked_in
+                    sys_class_path:
+                      type: string
+                      description: sys_class_path
+                    mac_address:
+                      type: string
+                      description: mac_address
+                    company:
+                      type: string
+                      description: company
+                    justification:
+                      type: string
+                      description: justification
+                    department:
+                      type: string
+                      description: department
+                    checkout:
+                      type: string
+                      description: checkout
+                    comments:
+                      type: string
+                      description: comments
+                    cost:
+                      type: string
+                      description: cost
+                    attestation_status:
+                      type: string
+                      description: attestation_status
+                    sys_mod_count:
+                      type: string
+                      description: sys_mod_count
+                    monitor:
+                      type: string
+                      description: monitor
+                    ip_address:
+                      type: string
+                      description: ip_address
+                    model_id:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                          description: link
+                        value:
+                          type: string
+                          description: value
+                      description: model_id
+                    duplicate_of:
+                      type: string
+                      description: duplicate_of
+                    sys_tags:
+                      type: string
+                      description: sys_tags
+                    cost_cc:
+                      type: string
+                      description: cost_cc
+                    order_date:
+                      type: string
+                      description: order_date
+                    schedule:
+                      type: string
+                      description: schedule
+                    environment:
+                      type: string
+                      description: environment
+                    due:
+                      type: string
+                      description: due
+                    attested:
+                      type: string
+                      description: attested
+                    location:
+                      type: string
+                      description: location
+                    category:
+                      type: string
+                      description: category
+                    fault_count:
+                      type: string
+                      description: fault_count
+                    lease_id:
+                      type: string
+                      description: lease_id
+                    service_classification:
+                      type: string
+                      description: service_classification
+                description: result
+      summary: Get services
+      description: Retrieves a list of services.
+      operationId: ServicesGet
+      parameters:
+        - name: sysparm_query
+          in: query
+          required: false
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_pagination_header
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_limit
+          in: query
+          required: false
+          type: integer
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_category
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_no_count
+          in: query
+          required: false
+          type: boolean
+  /api/now/table/core_company:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    banner_image_light:
+                      type: string
+                      description: banner_image_light
+                    country:
+                      type: string
+                      description: country
+                    parent:
+                      type: string
+                      description: parent
+                    notes:
+                      type: string
+                      description: notes
+                    city:
+                      type: string
+                      description: city
+                    stock_symbol:
+                      type: string
+                      description: stock_symbol
+                    latitude:
+                      type: string
+                      description: latitude
+                    discount:
+                      type: string
+                      description: discount
+                    sys_updated_on:
+                      type: string
+                      description: sys_updated_on
+                    sys_class_name:
+                      type: string
+                      description: sys_class_name
+                    manufacturer:
+                      type: string
+                      description: manufacturer
+                    apple_icon:
+                      type: string
+                      description: apple_icon
+                    sys_id:
+                      type: string
+                      description: sys_id
+                    market_cap:
+                      type: string
+                      description: market_cap
+                    sys_updated_by:
+                      type: string
+                      description: sys_updated_by
+                    num_employees:
+                      type: string
+                      description: num_employees
+                    fiscal_year:
+                      type: string
+                      description: fiscal_year
+                    rank_tier:
+                      type: string
+                      description: rank_tier
+                    street:
+                      type: string
+                      description: street
+                    sys_created_on:
+                      type: string
+                      description: sys_created_on
+                    vendor:
+                      type: string
+                      description: vendor
+                    contact:
+                      type: string
+                      description: contact
+                    lat_long_error:
+                      type: string
+                      description: lat_long_error
+                    stock_price:
+                      type: string
+                      description: stock_price
+                    theme:
+                      type: string
+                      description: theme
+                    banner_image:
+                      type: string
+                      description: banner_image
+                    state:
+                      type: string
+                      description: state
+                    sys_created_by:
+                      type: string
+                      description: sys_created_by
+                    longitude:
+                      type: string
+                      description: longitude
+                    vendor_type:
+                      type: string
+                      description: vendor_type
+                    zip:
+                      type: string
+                      description: zip
+                    profits:
+                      type: string
+                      description: profits
+                    revenue_per_year:
+                      type: string
+                      description: revenue_per_year
+                    website:
+                      type: string
+                      description: website
+                    publicly_traded:
+                      type: string
+                      description: publicly_traded
+                    sys_mod_count:
+                      type: string
+                      description: sys_mod_count
+                    sys_tags:
+                      type: string
+                      description: sys_tags
+                    fax_phone:
+                      type: string
+                      description: fax_phone
+                    phone:
+                      type: string
+                      description: phone
+                    vendor_manager:
+                      type: string
+                      description: vendor_manager
+                    banner_text:
+                      type: string
+                      description: banner_text
+                    name:
+                      type: string
+                      description: name
+                    coordinates_retrieved_on:
+                      type: string
+                      description: coordinates_retrieved_on
+                    customer:
+                      type: string
+                      description: customer
+                    primary:
+                      type: string
+                      description: primary
+                description: result
+      summary: Get companies
+      description: Retrieve a list of companies
+      operationId: CompaniesGet
+      parameters:
+        - name: sysparm_query
+          in: query
+          required: false
+          type: string
+        - name: sysparm_display_value
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_exclude_reference_link
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_suppress_pagination_header
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_fields
+          in: query
+          required: false
+          type: string
+        - name: sysparm_limit
+          in: query
+          required: false
+          type: integer
+        - name: sysparm_view
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_category
+          in: query
+          required: false
+          type: string
+        - name: sysparm_query_no_domain
+          in: query
+          required: false
+          type: boolean
+        - name: sysparm_no_count
+          in: query
+          required: false
+          type: boolean
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  basic-auth:
+    type: basic
+security:
+  - basic-auth: []
+tags: []
