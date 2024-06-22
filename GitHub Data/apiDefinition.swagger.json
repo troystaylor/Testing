@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "contact": {
+      "name": "Nathalie Leenders",
+      "url": "https://www.nathalieleenders.com",
+      "email": "info@nathalieleenders.com"
+    },
+    "title": "GitHub Data",
+    "description": "To use the files on your GitHub repo as a datasource, for example if your website is hosted on GitHub. Not to be confused with the other GitHub connector that focuses on the PR's."
+  },
+  "host": "raw.githubusercontent.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/{github_owner}/{repo_name}/{branch}/{path_file}": {
+      "get": {
+        "summary": "Get file",
+        "description": "Retrieve the files on any public GitHub repository, for example if your website is hosted on GitHub.",
+        "operationId": "RetrieveData",
+        "parameters": [
+          {
+            "name": "github_owner",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "GitHub Owner",
+            "description": "The GitHub owner.",
+            "x-ms-url-encoding": "single"
+          },
+          {
+            "name": "repo_name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Repo Name",
+            "description": "The repository name.",
+            "x-ms-url-encoding": "single"
+          },
+          {
+            "name": "branch",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Branch",
+            "description": "The branch, tag, or commit name.",
+            "x-ms-url-encoding": "single"
+          },
+          {
+            "name": "path_file",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Path",
+            "description": "The path of the file, including any folder separated by forward slashes ('/').",
+            "x-ms-url-encoding": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://github.com/"
+    },
+    {
+      "propertyName": "Privacy policy",
+      "propertyValue": "https://docs.github.com/site-policy/privacy-policies/github-privacy-statement"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Content and Files"
+    }
+  ],
+  "securityDefinitions": {}
+}
