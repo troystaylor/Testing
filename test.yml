@@ -1,0 +1,5313 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: eCellar
+  description: >-
+    Serve your customers from online to tasting room with ease using a single,
+    all-in-one web-based CRM and POS platform that's available anywhere on any
+    device. With eCellar, you have a full 360 degree view of your customers, and
+    with our unprecedented search capability, you can segment, target & send
+    personalized emails and pull informative reports.
+host: exchange.ecellar-api.com
+basePath: /v1
+schemes:
+  - https
+consumes:
+  - application/json
+  - application/octet-stream
+produces:
+  - application/json
+paths:
+  /addresses:
+    post:
+      operationId: SearchCustomerAddresses
+      summary: Search Customer Addresses
+      description: |
+        Search an array of customer addresses, filtered and sorted in pages.
+      tags:
+        - Customers
+      x-route-name: bulk-addresses-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_addresses_get_parameters
+          description: Parameters for retrieving an array of customer addresses
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              customer_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              address_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - addresses
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              addresses:
+                type: array
+                items:
+                  $ref: '#/definitions/Address'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/brands:
+    get:
+      operationId: GetClientBrands
+      summary: Get Client Brands
+      description: |
+        Get an array of client brands.
+      tags:
+        - Client
+      x-route-name: bulk-brands-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientBrand'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/customersources:
+    get:
+      operationId: GetCustomerSources
+      summary: Get Customer Sources
+      description: |
+        Get an array of customer sources.
+      tags:
+        - Client
+      x-route-name: bulk-customersources-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CustomerSource'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/customertags:
+    get:
+      operationId: GetCustomerTags
+      summary: Get Customer Tags
+      description: |
+        Get an array of customer tags.
+      tags:
+        - Client
+      x-route-name: bulk-customer-tags-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientCustomerTag'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/customertypes:
+    get:
+      operationId: GetCustomerTypes
+      summary: Get Customer Types
+      description: |
+        Get an array of customer types.
+      tags:
+        - Client
+      x-route-name: bulk-customertypes-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CustomerType'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/locations:
+    get:
+      operationId: GetClientLocations
+      summary: Get Client Locations
+      description: |
+        Get an array of client locations.
+      tags:
+        - Client
+      x-route-name: bulk-client-locations-get
+      x-route-version: ^1.1.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientLocation'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/ordertags:
+    get:
+      operationId: GetOrderTags
+      summary: Get Order Tags
+      description: |
+        Get an array of order tags.
+      tags:
+        - Client
+      x-route-name: bulk-ordertags-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OrderTag'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/reservationtypes:
+    get:
+      operationId: GetClientReservationTypes
+      summary: Get Client Reservation Types
+      description: |
+        Get an array of client reservation types.
+      tags:
+        - Client
+      x-route-name: bulk-reservationtypes-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReservationType'
+        '401':
+          description: Needs Authentication
+          schema:
+            $ref: '#/definitions/NotAuthenticated'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /client/terminals:
+    get:
+      operationId: GetClientTerminals
+      summary: Get Client Terminals
+      description: |
+        Get an array of client terminals.
+      tags:
+        - Client
+      x-route-name: bulk-client-terminals-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientTerminal'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /club/events:
+    post:
+      operationId: SearchClubEvents
+      summary: Search Club Events
+      description: |
+        Search an array of club events, filtered and sorted in pages.
+      tags:
+        - Club
+      x-route-name: bulk-clubs-events-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_clubs_events_get_parameters
+          description: Parameters for retrieving an array of club events
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              brand_keys:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: <ENUM>
+              club_event_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              club_event_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - events
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              events:
+                type: array
+                items:
+                  $ref: '#/definitions/ClubEvent'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /club/tiers:
+    post:
+      operationId: SearchClubTiers
+      summary: Search Club Tiers
+      description: |
+        Search an array of club tiers, filtered and sorted in pages.
+      tags:
+        - Club
+      x-route-name: bulk-clubs-tiers-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_clubs_tiers_get_parameters
+          description: Parameters for retrieving an array of club tiers
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              brand_keys:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: <ENUM>
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - tiers
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              tiers:
+                type: array
+                items:
+                  $ref: '#/definitions/ClubTier'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /customers:
+    post:
+      operationId: SearchCustomers
+      summary: Search Customers
+      description: |
+        Search an array of customers, filtered and sorted in pages.
+      tags:
+        - Customers
+      x-route-name: bulk-customers-get
+      x-route-version: ^2.1.0
+      parameters:
+        - in: body
+          name: bulk_customers_get_parameters
+          description: Parameters for retrieving an array of customers
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              customer_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              customer_type_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              signup_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              signup_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              sort:
+                type: string
+                maxLength: 30
+                example: signup_date
+              sort_order:
+                type: string
+                maxLength: 4
+                example: asc
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - customers
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              customers:
+                type: array
+                items:
+                  $ref: '#/definitions/Customer'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /inventory/counts:
+    post:
+      operationId: SearchInventoryCounts
+      summary: Search Inventory Counts
+      description: |
+        Get current inventory counts.
+      tags:
+        - Inventory
+      x-route-name: inventory-count-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: inventory_counts_get_parameters
+          description: Parameters for retrieving inventory counts
+          schema:
+            additionalProperties: false
+            properties:
+              skus:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: 22NVCS750
+              location_ids:
+                type: array
+                items:
+                  type: string
+                  minLength: 36
+                  maxLength: 36
+                  example: a9df0866-8616-4fce-a18f-93cf056e1640
+              location_names:
+                type: array
+                items:
+                  type: string
+                  maxLength: 100
+                  example: Tasting Room
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/InventoryCount'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /inventory/counts/{SKU}:
+    patch:
+      operationId: PatchInventoryCount
+      summary: Adjust Inventory Count
+      description: |
+        Adjust on hand inventory count for SKU.
+      tags:
+        - Inventory
+      x-route-name: inventory-count-patch
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: SKU
+          required: true
+          type: string
+          maxLength: 20
+          description: The SKU to adjust on hand inventory for
+        - in: body
+          name: inventory_counts_patch_parameters
+          description: Parameters for adjusting inventory count
+          schema:
+            additionalProperties: false
+            required:
+              - on_hand_adjustment
+            properties:
+              on_hand_adjustment:
+                type: integer
+                example: 12
+              location_id:
+                type: string
+                minLength: 36
+                maxLength: 36
+                example: a9df0866-8616-4fce-a18f-93cf056e1640
+              location_name:
+                type: string
+                maxLength: 100
+                example: Tasting Room
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              inventory_not_enabled:
+                type: boolean
+                example: true
+                description: Inventory service not enabled for this client
+              invalid_sku:
+                type: boolean
+                example: true
+                description: SKU does not exist or is not active
+              invalid_location:
+                type: boolean
+                example: true
+                description: Location does not exist or is not used for inventory
+              ambiguous_location:
+                type: boolean
+                example: true
+                description: Location name matches multiple inventory locations
+              sku_not_at_location:
+                type: boolean
+                example: true
+                description: SKU does not exist at inventory location
+              adjustment_below_zero_not_allowed:
+                type: boolean
+                example: true
+                description: SKU may not be adjusted below zero at this location
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /inventory/SKU/{SKU}:
+    patch:
+      operationId: PatchInventorySKU
+      summary: Adjust Inventory SKU
+      description: |
+        Adjust product name for SKU.
+      tags:
+        - Inventory
+      x-route-name: inventory-sku-patch
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: SKU
+          required: true
+          type: string
+          maxLength: 20
+          description: The SKU to adjust on hand inventory for
+        - in: body
+          name: inventory_sku_patch_parameters
+          description: Parameters for adjusting inventory SKU
+          schema:
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                maxLength: 255
+                example: 2022 Napa Valley Cabernet Sauvignon
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - product_id
+            properties:
+              product_id:
+                type: integer
+                example: 75
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              inventory_not_enabled:
+                type: boolean
+                example: true
+                description: Inventory service not enabled for this client
+              product_name_not_unique:
+                type: boolean
+                example: true
+                description: Product name is not unique
+              ambiguous_sku:
+                type: boolean
+                example: true
+                description: SKU matches multiple products
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /notes:
+    post:
+      operationId: SearchCustomerNotes
+      summary: Search Customer Notes
+      description: |
+        Search an array of customer notes, filtered and sorted in pages.
+      tags:
+        - Customers
+      x-route-name: bulk-notes-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_notes_get_parameters
+          description: Parameters for retrieving an array of customer notes
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              customer_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - notes
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              notes:
+                type: array
+                items:
+                  $ref: '#/definitions/Note'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /orders:
+    post:
+      operationId: SearchOrders
+      summary: Search Orders
+      description: |
+        Search an array of orders, filtered and sorted in pages.
+      tags:
+        - Orders
+      x-route-name: bulk-purchases-get
+      x-route-version: ^2.3.0
+      parameters:
+        - in: body
+          name: bulk_purchases_get_parameters
+          description: Parameters for retrieving an array of orders
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              brand_keys:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: <ENUM>
+              purchase_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              customer_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              purchase_statuses:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: <ENUM>
+              billing_statuses:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: <ENUM>
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              close_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              close_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              funds_captured_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              funds_captured_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - orders
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              orders:
+                type: array
+                items:
+                  $ref: '#/definitions/Order'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /orders/lines:
+    post:
+      operationId: SearchOrderLines
+      summary: Search Order Lines
+      description: |
+        Search an array of order lines, filtered and sorted in pages.
+      tags:
+        - Orders
+      x-route-name: bulk-purchases-lines-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_purchases_lines_get_parameters
+          description: Parameters for retrieving an array of order lines
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              purchase_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - order_lines
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              order_lines:
+                type: array
+                items:
+                  $ref: '#/definitions/OrderLineTop'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /orders/payments:
+    post:
+      operationId: SearchOrderPayments
+      summary: Search Order Payments
+      description: |
+        Search an array of order payments, filtered and sorted in pages.
+      tags:
+        - Orders
+      x-route-name: bulk-purchases-payments-get
+      x-route-version: ^2.0.0
+      parameters:
+        - in: body
+          name: bulk_purchases_payments_get_parameters
+          description: Parameters for retrieving an array of order payments
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              purchase_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              billing_statuses:
+                type: array
+                items:
+                  type: string
+                  maxLength: 50
+                  example: <ENUM>
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              funds_captured_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              funds_captured_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - payments
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              payments:
+                type: array
+                items:
+                  $ref: '#/definitions/OrderPaymentTop'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /orders/trackings:
+    post:
+      operationId: SearchOrderTrackingRecords
+      summary: Search Order Tracking Records
+      description: |
+        Search an array of order tracking records, filtered and sorted in pages.
+      tags:
+        - Orders
+      x-route-name: bulk-purchases-trackings-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_purchases_trackings_get_parameters
+          description: Parameters for retrieving an array of order tracking records
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              purchase_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - trackings
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              trackings:
+                type: array
+                items:
+                  $ref: '#/definitions/OrderTrackingTop'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /order/{order_id}/tracking:
+    post:
+      operationId: PostOrderTracking
+      summary: Create Order Tracking Record
+      description: |
+        Create an order tracking record.
+      tags:
+        - Orders
+      x-route-name: purchase-tracking-post
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          type: integer
+          minimum: 1
+          description: The ID of the Order to use
+        - in: body
+          name: tracking_post_parameters
+          description: Parameters for creating an order tracking record
+          schema:
+            additionalProperties: false
+            required:
+              - carrier_enum
+              - carrier_tracking_number
+            properties:
+              carrier_enum:
+                type: string
+                maxLength: 50
+                example: <ENUM>
+                description: CarrierType enum
+              carrier_tracking_number:
+                type: string
+                maxLength: 255
+                example: ABC123
+                description: Carrier tracking number
+              date_delivered:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Date delivered by carrier
+              date_shipped:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Date shipped via carrier
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              tracking_id:
+                type: integer
+                minimum: 0
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              deliver_before_order:
+                type: boolean
+                example: true
+                description: Supplied date_delivered is before the order date
+              deliver_before_ship:
+                type: boolean
+                example: true
+                description: Supplied date_delivered is before supplied date_shipped
+              duplicate_tracking_number:
+                type: boolean
+                example: true
+                description: Supplied tracking number already exists for the order
+              empty_tracking_number:
+                type: boolean
+                example: true
+                description: Supplied tracking number has no length
+              invalid_carrier_enum:
+                type: boolean
+                example: true
+                description: Supplied carrier_enum is invalid
+              invalid_order_id:
+                type: boolean
+                example: true
+                description: Supplied order_id does not match an existing order
+              ship_before_order:
+                type: boolean
+                example: true
+                description: Supplied date_shipped is before the order date
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /order/{order_id}/tracking/{carrier_tracking_number}/delivered:
+    patch:
+      operationId: PatchOrderTrackingDelivered
+      summary: Order Tracking Delivered
+      description: |
+        Set delivered date for an order tracking record
+      tags:
+        - Orders
+      x-route-name: purchase-tracking-delivered-patch
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          type: integer
+          minimum: 1
+          description: The ID of the Order to use
+        - in: path
+          name: carrier_tracking_number
+          required: true
+          type: string
+          maxLength: 255
+          description: The carrier tracking number
+        - in: body
+          name: tracking_delivered_patch_parameters
+          description: Parameters for setting delivered date for an order tracking record
+          schema:
+            additionalProperties: false
+            required:
+              - date_delivered
+            properties:
+              date_delivered:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Date delivered by carrier
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              before_order_date:
+                type: boolean
+                example: true
+                description: Supplied date_delivered is before the order date
+              before_tracking_ship_date:
+                type: boolean
+                example: true
+                description: Supplied date_delivered is before tracking ship date
+              not_found:
+                type: boolean
+                example: true
+                description: Tracking record not found
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /order/{order_id}/tracking/{carrier_tracking_number}/shipped:
+    patch:
+      operationId: PatchOrderTrackingShipped
+      summary: Order Tracking Shipped
+      description: |
+        Set shipped date for an order tracking record.
+      tags:
+        - Orders
+      x-route-name: purchase-tracking-shipped-patch
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          type: integer
+          minimum: 1
+          description: The ID of the Order to use
+        - in: path
+          name: carrier_tracking_number
+          required: true
+          type: string
+          maxLength: 255
+          description: The carrier tracking number
+        - in: body
+          name: tracking_shipped_patch_parameters
+          description: Parameters for setting ship date for an order tracking record
+          schema:
+            additionalProperties: false
+            required:
+              - date_shipped
+            properties:
+              date_shipped:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Date shipped via carrier
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              before_order_date:
+                type: boolean
+                example: true
+                description: Supplied date_shipped is before the order date
+              not_found:
+                type: boolean
+                example: true
+                description: Tracking record not found
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /order/{order_id}/delivered:
+    patch:
+      operationId: PatchOrderDelivered
+      summary: Order Delivered
+      description: >
+        Set delivered status for an order. Use when all packages have been
+        delivered.
+      tags:
+        - Orders
+      x-route-name: purchase-delivered-patch
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          type: integer
+          minimum: 1
+          description: The ID of the Order to use
+        - in: body
+          name: delivered_patch_parameters
+          description: Parameters for setting delivered status for an order
+          schema:
+            additionalProperties: false
+            required:
+              - date_delivered
+            properties:
+              date_delivered:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Date fully delivered by carrier
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              before_order_date:
+                type: boolean
+                example: true
+                description: Supplied date_delivered is before the order date
+              illegal_status_change:
+                type: boolean
+                example: true
+                description: Order status must be DELIVERED, SHIPPED
+              not_found:
+                type: boolean
+                example: true
+                description: Order not found
+              not_fully_delivered:
+                type: boolean
+                example: true
+                description: Some tracking records are missing a delivered date
+              not_max_delivered_date:
+                type: boolean
+                example: true
+                description: >-
+                  Supplied date_delivered does not match max tracking delivered
+                  date
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /order/{order_id}/shipped:
+    patch:
+      operationId: PatchOrderShipped
+      summary: Order Shipped
+      description: >
+        Set shipped date and status for an order. Use when all packages have
+        shipped.
+      tags:
+        - Orders
+      x-route-name: purchase-shipped-patch
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          type: integer
+          minimum: 1
+          description: The ID of the Order to use
+        - in: body
+          name: shipped_patch_parameters
+          description: Parameters for setting ship date and status for an order
+          schema:
+            additionalProperties: false
+            required:
+              - date_shipped
+            properties:
+              date_shipped:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Date fully shipped via carrier
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              before_order_date:
+                type: boolean
+                example: true
+                description: Supplied date_shipped is before the order date
+              illegal_status_change:
+                type: boolean
+                example: true
+                description: >-
+                  Order status must be EXPORTED, HOLD_SHIP, SHIPPED, TO_PICKUP
+                  or UNSHIPPED
+              not_found:
+                type: boolean
+                example: true
+                description: Order not found
+              not_fully_shipped:
+                type: boolean
+                example: true
+                description: Some tracking records are missing a ship date
+              not_max_ship_date:
+                type: boolean
+                example: true
+                description: Supplied date_shipped does not match max tracking ship date
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /product:
+    post:
+      operationId: CreateProduct
+      summary: Create Product
+      description: |
+        Create product and inventory sku
+      tags:
+        - Products
+      x-route-name: product-create
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_product_create_parameters
+          description: Parameters for creating a product
+          schema:
+            $ref: '#/definitions/ProductCreate'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - product_id
+            properties:
+              product_id:
+                type: integer
+                example: 75
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              name_not_unique:
+                type: boolean
+                example: true
+                description: Product name is not unique
+              sku_not_unique:
+                type: boolean
+                example: true
+                description: Product SKU is not unique
+              invalid_category:
+                type: boolean
+                example: true
+                description: Product category does not exist
+              invalid_type:
+                type: boolean
+                example: true
+                description: Product type must be Wine or Merchandise
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /product/{product_id}:
+    put:
+      operationId: UpdateProduct
+      summary: Update Product
+      description: |
+        Update product and inventory sku
+      tags:
+        - Products
+      x-route-name: product-update
+      x-route-version: ^1.0.0
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          type: integer
+          minimum: 1
+          description: The product id to modify
+        - in: body
+          name: bulk_product_update_parameters
+          description: Parameters for updating a product
+          schema:
+            $ref: '#/definitions/ProductUpdate'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Submitted data failed server verification
+          schema:
+            type: object
+            properties:
+              name_not_unique:
+                type: boolean
+                example: true
+                description: Product name is not unique
+              invalid_product_id:
+                type: boolean
+                example: true
+                description: Product id does not exist
+              invalid_category:
+                type: boolean
+                example: true
+                description: Product category does not exist
+              invalid_type:
+                type: boolean
+                example: true
+                description: Product type must be Wine or Merchandise
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /products:
+    post:
+      operationId: SearchProducts
+      summary: Search Products
+      description: |
+        Search an array of products, filtered and sorted in pages.
+      tags:
+        - Products
+      x-route-name: bulk-products-get
+      x-route-version: ^1.2.0
+      parameters:
+        - in: body
+          name: bulk_products_get_parameters
+          description: Parameters for retrieving an array of products
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - products
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              products:
+                type: array
+                items:
+                  $ref: '#/definitions/Product'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /products/categories:
+    post:
+      operationId: SearchProductCategories
+      summary: Search Product Categories
+      description: |
+        Search an array of product categories, filtered and sorted in pages.
+      tags:
+        - Products
+      x-route-name: bulk-products-categories-get
+      x-route-version: ^1.0.0
+      parameters:
+        - in: body
+          name: bulk_products_categories_get_parameters
+          description: Parameters for retrieving an array of product categories
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              create_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              create_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - categories
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              categories:
+                type: array
+                items:
+                  $ref: '#/definitions/ProductCategory'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /subscriptions:
+    post:
+      operationId: SearchCustomerClubSubscriptions
+      summary: Search Customer Club Subscriptions
+      description: >
+        Search an array of customer club subscriptions, filtered and sorted in
+        pages.
+      tags:
+        - Customers
+      x-route-name: bulk-subscriptions-get
+      x-route-version: ^1.1.0
+      parameters:
+        - in: body
+          name: bulk_subscriptions_get_parameters
+          description: Parameters for retrieving an array of customer club subscriptions
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              customer_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              club_tier_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              signup_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              signup_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              cancel_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              cancel_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+              cc_expiration_date_start:
+                type: string
+                format: date
+                example: '2018-08-01'
+              cc_expiration_date_end:
+                type: string
+                format: date
+                example: '2018-08-01'
+                description: Based on card expiration month/year
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '2018-08-01T00:00:00.000Z'
+                description: Added in February 2019
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - subscriptions
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              subscriptions:
+                type: array
+                items:
+                  $ref: '#/definitions/Subscription'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /reservations:
+    post:
+      operationId: SearchReservations
+      summary: Search Reservations
+      description: |
+        Search an array of reservations, filtered and sorted in pages.
+      tags:
+        - Reservations
+      x-route-name: bulk-reservations-get
+      x-route-version: ^1.1.0
+      parameters:
+        - in: body
+          name: bulk_reservations_get_parameters
+          description: Parameters for retrieving an array of reservations
+          schema:
+            additionalProperties: false
+            required:
+              - page
+              - page_size
+            properties:
+              reservation_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 1
+                  example: 1
+              create_date_start:
+                type: string
+                format: date-time
+                example: '1970-01-31T00:00:00.000Z'
+              create_date_end:
+                type: string
+                format: date-time
+                example: '1970-01-31T00:00:00.000Z'
+              modified_date_start:
+                type: string
+                format: date-time
+                example: '1970-01-31T00:00:00.000Z'
+              modified_date_end:
+                type: string
+                format: date-time
+                example: '1970-01-31T00:00:00.000Z'
+              page:
+                type: integer
+                minimum: 1
+                example: 1
+              page_size:
+                type: integer
+                minimum: 1
+                maximum: 500
+                example: 50
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - total_records
+              - total_pages
+              - page
+              - page_size
+              - reservations
+            properties:
+              total_records:
+                type: integer
+                example: 75
+              total_pages:
+                type: integer
+                example: 2
+              page:
+                type: integer
+                example: 2
+              page_size:
+                type: integer
+                example: 25
+              reservations:
+                type: array
+                items:
+                  $ref: '#/definitions/Reservation'
+        '401':
+          description: Needs Authentication
+          schema:
+            $ref: '#/definitions/NotAuthenticated'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/billingstatuses:
+    get:
+      operationId: GetBillingStatuses
+      summary: Get Billing Statuses
+      description: |
+        Get an array of billing statuses.
+      tags:
+        - Types
+      x-route-name: bulk-billingstatuses-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BillingStatus'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/cards:
+    get:
+      operationId: GetCardTypes
+      summary: Get Card Types
+      description: |
+        Get an array of card types.
+      tags:
+        - Types
+      x-route-name: bulk-cards-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardType'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/carriers:
+    get:
+      operationId: GetCarrierTypes
+      summary: Get Carrier Types
+      description: |
+        Get an array of carrier types.
+      tags:
+        - Types
+      x-route-name: bulk-carriers-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CarrierType'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/countrycodes:
+    get:
+      operationId: GetCountryCodes
+      summary: Get Country Codes
+      description: |
+        Get an array of country codes.
+      tags:
+        - Types
+      x-route-name: bulk-countrycodes-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CountryCode'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/fulfillmentcompanies:
+    get:
+      operationId: GetFulfillmentCompanies
+      summary: Get Fulfillment Companies
+      description: |
+        Get an array of fulfillment companies.
+      tags:
+        - Types
+      x-route-name: bulk-fulfillmentcompanies-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FulfillmentCompany'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/notes:
+    get:
+      operationId: GetNoteTypes
+      summary: Get Note Types
+      description: |
+        Get an array of note types.
+      tags:
+        - Types
+      x-route-name: bulk-notetypes-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NoteType'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/payments:
+    get:
+      operationId: GetPaymentTypes
+      summary: Get Payment Types
+      description: |
+        Get an array of payment types.
+      tags:
+        - Types
+      x-route-name: bulk-paymenttypes-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentType'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/productavailabilities:
+    get:
+      operationId: GetProductAvailabilities
+      summary: Get Product Availabilities
+      description: >
+        Get an array of product availabilities. Used by brands with Designer
+        Widgets.
+      tags:
+        - Types
+      x-route-name: bulk-productavailabilities-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductAvailability'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/productstatuses:
+    get:
+      operationId: GetProductStatuses
+      summary: Get Product Statuses
+      description: >
+        Get an array of product statuses. Used by brands without Designer
+        Widgets.
+      tags:
+        - Types
+      x-route-name: bulk-productstatuses-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductStatus'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/purchasesources:
+    get:
+      operationId: GetPurchaseSources
+      summary: Get Purchase Sources
+      description: |
+        Get an array of purchase sources.
+      tags:
+        - Types
+      x-route-name: bulk-purchasesources-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseSource'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/reservationstatuses:
+    get:
+      operationId: GetReservationStatuses
+      summary: Get Reservation Statuses
+      description: |
+        Get an array of reservation statuses.
+      tags:
+        - Types
+      x-route-name: bulk-reservationstatuses-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReservationStatus'
+        '401':
+          description: Needs Authentication
+          schema:
+            $ref: '#/definitions/NotAuthenticated'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/purchasestatuses:
+    get:
+      operationId: GetPurchaseStatuses
+      summary: Get Purchase Statuses
+      description: |
+        Get an array of purchase statuses.
+      tags:
+        - Types
+      x-route-name: bulk-purchasestatuses-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseStatus'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+  /types/statecodes:
+    get:
+      operationId: GetStateCodes
+      summary: Get State Codes
+      description: |
+        Get an array of state codes.
+      tags:
+        - Types
+      x-route-name: bulk-statecodes-get
+      x-route-version: ^1.0.0
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/StateCode'
+        '412':
+          description: Validation Failed
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/TooManyRequests'
+        '500':
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    required:
+      - code
+      - message
+  NotAuthenticated:
+    type: object
+    properties:
+      needs_authentication:
+        type: boolean
+    required:
+      - needs_authentication
+  NotAuthorized:
+    type: object
+    properties:
+      invalid_credentials:
+        type: boolean
+    required:
+      - invalid_credentials
+  TooManyRequests:
+    type: object
+    properties:
+      too_many_requests:
+        type: boolean
+    required:
+      - too_many_requests
+  ValidationError:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      validation_errors:
+        type: array
+        items:
+          type: string
+    required:
+      - code
+      - message
+  Address:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_id
+      - address_id
+      - first_name
+      - last_name
+      - company_name
+      - address_line_1
+      - address_line_2
+      - city
+      - state_name
+      - state_code
+      - region
+      - postal_code
+      - zip_extension
+      - country_name
+      - country_code
+      - phone
+      - birth_date
+      - create_date
+      - modified_date
+    properties:
+      customer_id:
+        type: integer
+        example: 123456
+      address_id:
+        type: integer
+        example: 123456
+      is_billing:
+        type: boolean
+        example: true
+        default: true
+        description: true means that this is a billing address
+      is_shipping:
+        type: boolean
+        example: true
+        default: true
+        description: true means that this is a shipping address
+      is_shipping_default:
+        type: boolean
+        example: true
+        default: true
+        description: true means that this is a default shipping address
+      is_club_shipping:
+        type: boolean
+        example: true
+        default: true
+        description: true means that this address is used in a club subscription
+      first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+      last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+      company_name:
+        type: string
+        maxLength: 255
+        example: Company
+      address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      address_line_2:
+        type: string
+        maxLength: 255
+        example: Apt 12
+      city:
+        type: string
+        maxLength: 50
+        example: Oakland
+      state_name:
+        type: string
+        maxLength: 255
+        example: California
+        description: State name for US, province name for Canada
+      state_code:
+        type: string
+        maxLength: 2
+        example: CA
+        description: For US and Canada
+      region:
+        type: string
+        maxLength: 50
+        example: <International>
+        description: For addresses outside US and Canada
+      postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+        description: US zip or international postal code
+      zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      country_code:
+        type: string
+        maxLength: 2
+        example: US
+      country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      phone:
+        type: string
+        format: phone
+        maxLength: 50
+        example: <Phone>
+      birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  BillingAddress:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_id
+      - address_id
+      - first_name
+      - last_name
+      - company_name
+      - address_line_1
+      - address_line_2
+      - city
+      - state_name
+      - state_code
+      - region
+      - postal_code
+      - zip_extension
+      - country_name
+      - country_code
+      - phone
+      - birth_date
+      - create_date
+      - modified_date
+    properties:
+      customer_id:
+        type: integer
+        example: 123456
+      address_id:
+        type: integer
+        example: 123456
+      first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+      last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+      company_name:
+        type: string
+        maxLength: 255
+        example: Company
+      address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      address_line_2:
+        type: string
+        maxLength: 255
+        example: Apt 12
+      city:
+        type: string
+        maxLength: 50
+        example: Oakland
+      state_name:
+        type: string
+        maxLength: 255
+        example: California
+        description: State name for US, province name for Canada
+      state_code:
+        type: string
+        maxLength: 2
+        example: CA
+        description: For US and Canada
+      region:
+        type: string
+        maxLength: 50
+        example: <International>
+        description: For addresses outside US and Canada
+      postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+        description: US zip or international postal code
+      zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      country_code:
+        type: string
+        maxLength: 2
+        example: US
+      country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      phone:
+        type: string
+        format: phone
+        maxLength: 50
+        example: <Phone>
+      birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  BillingStatus:
+    type: object
+    additionalProperties: false
+    required:
+      - billing_status
+      - enum
+    properties:
+      billing_status:
+        type: string
+        maxLength: 50
+        example: Paid
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  CardType:
+    type: object
+    additionalProperties: false
+    required:
+      - card_type
+      - enum
+    properties:
+      card_type:
+        type: string
+        maxLength: 255
+        example: VISA
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  CarrierType:
+    type: object
+    additionalProperties: false
+    required:
+      - carrier_name
+      - enum
+    properties:
+      carrier_name:
+        type: string
+        maxLength: 50
+        example: UPS
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  ClientBrand:
+    type: object
+    additionalProperties: false
+    required:
+      - brand_name
+      - brand_key
+    properties:
+      brand_name:
+        type: string
+        maxLength: 150
+        example: Brand Name
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  ClientCustomerTag:
+    type: object
+    additionalProperties: false
+    description: Client Customer Tags
+    required:
+      - tag_group_id
+      - tag_group_name
+      - tag_selection_type
+      - tag_group_display_order
+      - tag_id
+      - tag_name
+      - tag_display_order
+    properties:
+      tag_group_id:
+        type: integer
+        example: 123456
+      tag_group_name:
+        type: string
+        maxLength: 255
+        example: What is your favorite color?
+      tag_group_display_order:
+        type: integer
+        example: 1
+      tag_selection_type:
+        type: string
+        maxLength: 10
+        example: <TagSelectionType> (MULTIPLE or SINGLE)
+      tag_id:
+        type: integer
+        example: 123456
+      tag_name:
+        type: string
+        maxLength: 255
+        example: Red
+      tag_display_order:
+        type: integer
+        example: 1
+  ClientLocation:
+    type: object
+    additionalProperties: false
+    required:
+      - location_id
+      - location_name
+      - timezone
+    properties:
+      location_id:
+        type: string
+        format: uuid
+        maxLength: 36
+        example: F4C4A8D5-9A06-4E48-912D-388094F1FBBD
+      location_name:
+        type: string
+        maxLength: 100
+        example: Visitor Center
+      timezone:
+        type: string
+        maxLength: 255
+        example: America/Los_Angeles
+  ClientTerminal:
+    type: object
+    additionalProperties: false
+    required:
+      - terminal_id
+      - terminal_name
+      - location_id
+      - brand_key
+    properties:
+      terminal_id:
+        type: integer
+        example: 123
+      terminal_name:
+        type: string
+        maxLength: 64
+        example: Name
+      location_id:
+        type: string
+        format: uuid
+        maxLength: 36
+        example: F4C4A8D5-9A06-4E48-912D-388094F1FBBD
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  ClubEvent:
+    type: object
+    additionalProperties: false
+    required:
+      - brand_key
+      - club_event_id
+      - client_name
+      - club_event_name
+      - club_event_date
+      - club_ship_group_name
+      - club_event_is_active
+      - club_tier_is_custom
+      - club_tier_name
+      - pickup_location_name
+      - products_price_sum
+      - products_qty_sum
+      - remix_end_date
+      - remix_start_date
+      - create_date
+      - modified_date
+    properties:
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      club_event_id:
+        type: integer
+        minimum: 1
+        example: 123456
+      client_name:
+        type: string
+        maxLength: 150
+        example: Fenway Estate
+      club_event_name:
+        type: string
+        maxLength: 100
+        example: Fall 2018 Reds
+      club_event_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      club_ship_group_name:
+        type: string
+        maxLength: 64
+        example: 6-Bottle Shipping Group
+      club_event_is_active:
+        type: boolean
+        example: true
+      club_tier_is_custom:
+        type: boolean
+        example: true
+      club_tier_name:
+        type: string
+        maxLength: 100
+        example: Legacy 6x4
+      pickup_location_name:
+        type: string
+        maxLength: 100
+        example: Visitor Center
+      products_price_sum:
+        type: number
+        format: money
+        example: 49.95
+      products_qty_sum:
+        type: integer
+        minimum: 0
+        example: 30
+      remix_end_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      remix_start_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  ClubTier:
+    type: object
+    additionalProperties: false
+    required:
+      - brand_key
+      - club_tier_id
+      - club_tier_name
+      - public_club_tier_name
+      - description
+      - display_order
+      - is_custom_tier
+      - default_customer_source_id
+      - default_customer_type_id
+      - create_date
+      - modified_date
+    properties:
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      club_tier_id:
+        type: integer
+        minimum: 1
+        example: 123456
+      club_tier_name:
+        type: string
+        maxLength: 100
+        example: Custom Club
+      public_club_tier_name:
+        type: string
+        maxLength: 100
+        example: Custom Club
+      description:
+        type: string
+        format: html
+        example: <HTML>
+      display_order:
+        type: integer
+        minimum: 0
+        example: 4
+      is_custom_tier:
+        type: boolean
+        example: true
+      default_customer_source_id:
+        type: integer
+        minimum: 1
+        example: 123456
+      default_customer_type_id:
+        type: integer
+        minimum: 1
+        example: 123456
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  CountryCode:
+    type: object
+    additionalProperties: false
+    required:
+      - country_name
+      - country_code
+    properties:
+      country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      country_code:
+        type: string
+        maxLength: 2
+        example: US
+  Customer:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_id
+      - customer_source_id
+      - customer_source
+      - customer_type_id
+      - customer_type
+      - first_name
+      - last_name
+      - company_name
+      - email_address
+      - phone_1
+      - phone_2
+      - mobile_phone
+      - birth_date
+      - account_manager
+      - allocation_tier_name
+      - signup_date
+      - is_ok_to_mail
+      - is_ok_to_email
+      - is_ok_to_call
+      - is_vip_pickup
+    properties:
+      customer_id:
+        type: integer
+        example: 123456
+      customer_source_id:
+        type: integer
+        example: 1
+        minimum: 1
+      customer_source:
+        type: string
+        example: Web
+        maxLength: 50
+      customer_type_id:
+        type: integer
+        example: 1
+        minimum: 1
+      customer_type:
+        type: string
+        example: Type
+        maxLength: 255
+      first_name:
+        type: string
+        example: John
+        maxLength: 255
+      last_name:
+        type: string
+        example: Smith
+        maxLength: 255
+      company_name:
+        type: string
+        example: Company
+        maxLength: 255
+      email_address:
+        type: string
+        format: email
+        example: <Email>
+        maxLength: 255
+      phone_1:
+        type: string
+        format: phone
+        example: <Phone>
+        maxLength: 15
+      phone_2:
+        type: string
+        format: phone
+        example: <Phone>
+        maxLength: 15
+      mobile_phone:
+        type: string
+        format: phone
+        example: <Phone>
+        maxLength: 15
+      birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      account_manager:
+        type: string
+        example: Bob Smith
+        maxLength: 50
+      allocation_tier_name:
+        type: string
+        example: Tier One
+        maxLength: 256
+        description: Returns null as of December 2019; use allocation_tiers array instead
+      signup_date:
+        type: string
+        format: date-time
+        example: '2016-04-23T18:25:43.511Z'
+      is_ok_to_email:
+        type: boolean
+        example: true
+        default: true
+      is_ok_to_mail:
+        type: boolean
+        example: true
+        default: true
+      is_ok_to_call:
+        type: boolean
+        example: true
+        default: true
+      is_vip_pickup:
+        type: boolean
+        example: true
+        default: true
+      billing_address:
+        $ref: '#/definitions/BillingAddress'
+      shipping_addresses:
+        type: array
+        items:
+          $ref: '#/definitions/ShippingAddress'
+      client_customer_tags:
+        type: array
+        items:
+          $ref: '#/definitions/ClientCustomerTag'
+      allocation_tiers:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerAllocationTier'
+  CustomerAllocationTier:
+    type: object
+    additionalProperties: false
+    description: Added in December 2019
+    required:
+      - brand_key
+      - allocation_tier_name
+      - create_date
+      - modified_date
+    properties:
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      allocation_tier_name:
+        type: string
+        example: Reds
+        maxLength: 256
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+  CustomerSource:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_source_id
+      - customer_source
+    properties:
+      customer_source_id:
+        type: integer
+        example: 123
+      customer_source:
+        type: string
+        maxLength: 50
+        example: Tasting Room
+  CustomerType:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_type_id
+      - customer_type
+    properties:
+      customer_type_id:
+        type: integer
+        example: 123
+      customer_type:
+        type: string
+        maxLength: 50
+        example: General Consumer
+  FulfillmentCompany:
+    type: object
+    additionalProperties: false
+    required:
+      - fulfillment_company
+      - enum
+    properties:
+      fulfillment_company:
+        type: string
+        maxLength: 100
+        example: Wine Shipping LLC
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  InventoryCount:
+    type: object
+    additionalProperties: false
+    required:
+      - SKU
+      - location_id
+      - location_name
+      - on_hand
+      - on_hold
+      - invoiced
+      - available
+    properties:
+      SKU:
+        type: string
+        maxLength: 20
+        example: 22NVCS750
+      location_id:
+        type: string
+        format: uuid
+        maxLength: 36
+        example: F4C4A8D5-9A06-4E48-912D-388094F1FBBD
+      location_name:
+        type: string
+        maxLength: 100
+        example: Visitor Center
+      on_hand:
+        type: integer
+        example: 5000
+      on_hold:
+        type: integer
+        example: 0
+      invoiced:
+        type: integer
+        example: 100
+      available:
+        type: integer
+        example: 4900
+  Note:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_id
+      - note_id
+      - note_type
+      - note_text
+      - create_date
+      - modified_date
+    properties:
+      customer_id:
+        type: integer
+        example: 123456
+      note_id:
+        type: integer
+        example: 123456
+      note_type:
+        type: string
+        maxLength: 50
+        example: <NoteType>
+      note_text:
+        type: string
+        format: html
+        example: <HTML>
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  NoteType:
+    type: object
+    additionalProperties: false
+    required:
+      - note_type
+      - enum
+    properties:
+      note_type:
+        type: string
+        maxLength: 250
+        example: Account
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  Order:
+    type: object
+    additionalProperties: false
+    required:
+      - brand_key
+      - order_id
+      - order_date
+      - order_status
+      - order_billing_status
+      - order_shipping
+      - order_shipping_tax
+      - order_tax
+      - order_fees_total
+      - order_subtotal
+      - order_total
+      - order_comments
+      - order_gift_message
+      - order_shipping_comments
+      - customer_email_address
+      - billing_first_name
+      - billing_last_name
+      - billing_company_name
+      - billing_address_line_1
+      - billing_address_line_2
+      - billing_city
+      - billing_state_code
+      - billing_state_name
+      - billing_region
+      - billing_postal_code
+      - billing_zip_extension
+      - billing_phone
+      - billing_birth_date
+      - billing_country_name
+      - billing_country_code
+      - shipment_is_pickup
+      - shipment_shipper
+      - pickup_first_name
+      - pickup_last_name
+      - shipment_first_name
+      - shipment_last_name
+      - shipment_company_name
+      - shipment_address_line_1
+      - shipment_address_line_2
+      - shipment_city
+      - shipment_state_code
+      - shipment_state_name
+      - shipment_region
+      - shipment_postal_code
+      - shipment_zip_extension
+      - shipment_country_code
+      - shipment_country_name
+      - shipment_phone
+      - shipment_birth_date
+      - customer_id
+      - shipper_code
+      - modified_date
+      - ship_date
+      - close_date
+      - fulfillment_company
+      - internal_comments
+      - purchase_source_id
+      - purchase_source
+      - tip_amount
+      - terminal_id
+      - is_remix_order
+      - club_subscription_id
+      - club_event_id
+      - sales_rep_name
+    properties:
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      order_id:
+        type: integer
+        example: 123456
+      customer_id:
+        type: integer
+        example: 123456
+      order_date:
+        type: string
+        format: date-time
+        example: '2016-04-23T18:25:43.511Z'
+      order_status:
+        type: string
+        maxLength: 50
+        example: <PurchaseStatus>
+      order_billing_status:
+        type: string
+        maxLength: 50
+        example: <BillingStatus>
+      order_shipping:
+        type: number
+        example: 20
+        description: US dollars
+      order_shipping_tax:
+        type: number
+        example: 2
+        description: US dollars. Added in December 2020.
+      order_tax:
+        type: number
+        example: 10
+        description: US dollars
+      order_fees_total:
+        type: number
+        example: 0.27
+        description: US dollars. Added in September 2022.
+      order_subtotal:
+        type: number
+        example: 100
+        description: Line item subtotal. US dollars
+      order_total:
+        type: number
+        example: 180
+        description: order_subtotal + order_shipping + order_tax. US dollars.
+      order_comments:
+        type: string
+        example: Long text
+      order_gift_message:
+        type: string
+        maxLength: 255
+        example: Happy birthday!
+      order_shipping_comments:
+        type: string
+        maxLength: 255
+        example: Please knock loudly!
+        description: This is not available to all shippers
+      customer_email_address:
+        type: string
+        maxLength: 120
+        example: <Email>
+      billing_first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+      billing_last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+      billing_company_name:
+        type: string
+        maxLength: 255
+        example: Company Name
+      billing_address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      billing_address_line_2:
+        type: string
+        maxLength: 255
+        example: Suite D
+      billing_city:
+        type: string
+        maxLength: 50
+        example: City Name
+      billing_state_code:
+        type: string
+        maxLength: 2
+        example: CA
+      billing_state_name:
+        type: string
+        maxLength: 255
+        example: California
+      billing_region:
+        type: string
+        maxLength: 50
+        example: Region Name
+        description: For non-US/Canada addresses
+      billing_postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+      billing_zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      billing_country_code:
+        type: string
+        maxLength: 2
+        example: US
+      billing_country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      billing_phone:
+        type: string
+        maxLength: 50
+        example: <Phone>
+      billing_birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      shipment_is_pickup:
+        type: boolean
+        example: true
+        default: false
+      shipment_shipper:
+        type: string
+        maxLength: 150
+        example: UPS 2nd Day
+      pickup_first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+        description: Pickup first name
+      pickup_last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+        description: Pickup last name
+      shipment_first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+        description: Recipient first name
+      shipment_last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+        description: Recipient last name
+      shipment_company_name:
+        type: string
+        maxLength: 255
+        example: Company Name
+        description: For pickups, this will be a client location name
+      shipment_address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      shipment_address_line_2:
+        type: string
+        maxLength: 255
+        example: Suite D
+      shipment_city:
+        type: string
+        maxLength: 50
+        example: City Name
+      shipment_state_code:
+        type: string
+        maxLength: 2
+        example: CA
+      shipment_state_name:
+        type: string
+        maxLength: 255
+        example: California
+      shipment_region:
+        type: string
+        maxLength: 50
+        example: Region Name
+        description: For non-US/Canada addresses
+      shipment_postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+      shipment_zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      shipment_country_code:
+        type: string
+        maxLength: 2
+        example: US
+      shipment_country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      shipment_phone:
+        type: string
+        maxLength: 50
+        example: <Phone>
+      shipment_birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      shipper_code:
+        type: string
+        maxLength: 255
+        example: GSO
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      ship_date:
+        type: string
+        format: date
+        example: '2018-08-01T00:00:00.000Z'
+      close_date:
+        type: string
+        format: date
+        example: '2018-08-01T00:00:00.000Z'
+      fulfillment_company:
+        type: string
+        maxLength: 100
+      internal_comments:
+        type: string
+        maxLength: 255
+      purchase_source_id:
+        type: integer
+        example: 123456
+        description: 'Deprecated: use purchase_source property'
+      purchase_source:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      tip_amount:
+        type: number
+        example: 10
+        description: US dollars
+      terminal_id:
+        type: integer
+        example: 123
+      is_remix_order:
+        type: boolean
+        example: true
+      club_subscription_id:
+        type: integer
+        example: 123456
+      club_event_id:
+        type: integer
+        example: 123456
+      sales_rep_name:
+        type: string
+        maxLength: 50
+        example: Bob Smith
+      inventory_location_id:
+        type: string
+        maxLength: 36
+        example: d994b743-3711-441d-b940-b2bfa88f9c4c
+      inventory_location_name:
+        type: string
+        maxLength: 100
+        example: Acme Winery Tasting Room
+      order_payments:
+        type: array
+        items:
+          $ref: '#/definitions/OrderPayment'
+      order_lines:
+        type: array
+        items:
+          $ref: '#/definitions/OrderLine'
+      order_trackings:
+        type: array
+        items:
+          $ref: '#/definitions/OrderTracking'
+      order_tags:
+        type: array
+        items:
+          $ref: '#/definitions/OrderTag'
+  OrderLine:
+    type: object
+    required:
+      - product_name
+      - sku
+      - quantity
+      - regular_price
+      - discount_price
+      - subtotal
+      - total
+      - product_id
+      - purchase_line_id
+      - discount_total
+      - is_taxable
+      - tax_amount
+    properties:
+      purchase_line_id:
+        type: integer
+        example: 123456
+      product_id:
+        type: integer
+        example: 123456
+      product_name:
+        type: string
+        maxLength: 255
+        example: Product Name
+      sku:
+        type: string
+        maxLength: 150
+        example: ABC123
+      quantity:
+        type: integer
+        example: 2
+      regular_price:
+        type: number
+        example: 100
+        description: US dollars
+      subtotal:
+        type: number
+        example: 200
+        description: US dollars
+      discount_price:
+        type: number
+        example: 90
+        description: US dollars
+      discount_total:
+        type: number
+        example: 20
+        description: US dollars
+      total:
+        type: number
+        example: 180
+        description: US dollars
+      is_taxable:
+        type: boolean
+        example: true
+      tax_amount:
+        type: number
+        example: 10.25
+        description: Added in December 2020
+      create_date:
+        type: string
+        format: date-time
+        example: '2018-08-01T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+  OrderLineTop:
+    description: For returning line items as the top level result
+    required:
+      - product_name
+      - sku
+      - quantity
+      - regular_price
+      - discount_price
+      - subtotal
+      - total
+      - product_id
+      - purchase_line_id
+      - discount_total
+      - is_taxable
+      - tax_amount
+    allOf:
+      - $ref: '#/definitions/OrderLine'
+      - type: object
+        properties:
+          purchase_id:
+            type: integer
+            example: 391034
+            description: Order id for the line item
+  OrderPayment:
+    type: object
+    required:
+      - billing_status
+      - payment_amount
+      - payment_date
+      - funds_captured_date
+      - payment_type
+      - card_type
+      - span
+      - expiration_month
+      - expiration_year
+      - name_on_card
+      - check_number
+      - po_number
+      - po_term
+      - po_is_due
+      - gift_card_last_4
+      - voucher_name
+      - payment_id
+      - tip_amount
+      - modified_date
+    properties:
+      payment_id:
+        type: integer
+        minimum: 1
+        example: 2
+      billing_status:
+        type: string
+        maxLength: 50
+        example: <BillingStatus>
+      payment_amount:
+        type: number
+        example: 100.25
+        description: US dollars
+      payment_date:
+        type: string
+        format: date-time
+        example: '2016-04-23T18:25:43.511Z'
+      funds_captured_date:
+        type: string
+        format: date-time
+        example: '2016-04-23T18:25:43.511Z'
+      payment_type:
+        type: string
+        maxLength: 100
+        example: <PaymentType>
+      card_type:
+        type: string
+        maxLength: 50
+        example: <CardType>
+      span:
+        type: string
+        maxLength: 4
+        example: 2212
+        description: Last 4 digits of card number
+      expiration_month:
+        type: integer
+        minimum: 1
+        maximum: 12
+        example: 12
+      expiration_year:
+        type: integer
+        example: 2021
+      name_on_card:
+        type: string
+        maxLength: 250
+        example: Bob Smith
+      check_number:
+        type: string
+        maxLength: 50
+        example: 82
+      po_number:
+        type: string
+        maxLength: 30
+        example: T2199S
+      po_term:
+        type: integer
+        example: 7
+      po_is_due:
+        type: boolean
+        example: true
+        default: false
+      gift_card_last_4:
+        type: string
+        maxLength: 4
+        example: XA49
+      voucher_name:
+        type: string
+        maxLength: 50
+        example: Vino Bello
+      tip_amount:
+        type: number
+        example: 10
+        description: US dollars
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+  OrderPaymentTop:
+    description: For returning payments as the top level result
+    required:
+      - billing_status
+      - payment_amount
+      - payment_date
+      - funds_captured_date
+      - payment_type
+      - card_type
+      - span
+      - expiration_month
+      - expiration_year
+      - name_on_card
+      - check_number
+      - po_number
+      - po_term
+      - po_is_due
+      - payment_id
+      - tip_amount
+      - modified_date
+    allOf:
+      - $ref: '#/definitions/OrderPayment'
+      - type: object
+        properties:
+          purchase_id:
+            type: integer
+            example: 391034
+            description: Order id for the payment
+  OrderTag:
+    type: object
+    additionalProperties: false
+    description: Client Order Tags
+    required:
+      - tag_group_id
+      - tag_group_name
+      - tag_selection_type
+      - tag_group_display_order
+      - tag_id
+      - tag_name
+      - tag_display_order
+    properties:
+      tag_group_id:
+        type: integer
+        example: 123456
+      tag_group_name:
+        type: string
+        maxLength: 255
+        example: What is your favorite color?
+      tag_group_display_order:
+        type: integer
+        example: 1
+      tag_selection_type:
+        type: string
+        maxLength: 10
+        example: <TagSelectionType> (MULTIPLE or SINGLE)
+      tag_id:
+        type: integer
+        example: 123456
+      tag_name:
+        type: string
+        maxLength: 255
+        example: Red
+      tag_display_order:
+        type: integer
+        example: 1
+  OrderTracking:
+    type: object
+    required:
+      - tracking_id
+      - carrier_name
+      - carrier_tracking_number
+      - carrier_tracking_url
+      - date_shipped
+      - date_delivered
+      - create_date
+      - modified_date
+    properties:
+      tracking_id:
+        type: integer
+        example: 1
+        minimum: 1
+      carrier_name:
+        type: string
+        maxLength: 50
+        example: <CarrierType>
+      carrier_tracking_number:
+        type: string
+        maxLength: 255
+        example: ABC123
+      carrier_tracking_url:
+        type: string
+        maxLength: 255
+      date_shipped:
+        type: string
+        format: date-time
+        example: '2016-04-23T18:25:43.511Z'
+      date_delivered:
+        type: string
+        format: date-time
+        example: '2016-14-23T18:25:43.511Z'
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  OrderTrackingTop:
+    description: For returning tracking numbers as the top level result
+    required:
+      - tracking_id
+      - carrier_name
+      - carrier_tracking_number
+      - carrier_tracking_url
+      - date_shipped
+      - date_delivered
+      - create_date
+      - modified_date
+    allOf:
+      - $ref: '#/definitions/OrderTracking'
+      - type: object
+        properties:
+          purchase_id:
+            type: integer
+            example: 391034
+            description: Order id for the tracking number
+  PaymentType:
+    type: object
+    additionalProperties: false
+    required:
+      - payment_type
+      - enum
+    properties:
+      payment_type:
+        type: string
+        maxLength: 100
+        example: Credit Card
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  Product:
+    type: object
+    additionalProperties: false
+    required:
+      - product_id
+      - product_name
+      - slug
+      - feature_text
+      - description
+      - display_title
+      - SKU
+      - product_type_id
+      - product_type
+      - product_type_name
+      - sales_report_category_id
+      - technical_notes
+      - secondary_notes
+      - review_notes
+      - minimum_quantity
+      - maximum_quantity
+      - quantity_increment
+      - price
+      - weight
+      - is_taxable
+      - is_wine
+      - display_order
+      - create_date
+      - modified_date
+    properties:
+      product_id:
+        type: integer
+        example: 123456
+      product_name:
+        type: string
+        maxLength: 255
+        example: Product Name
+      slug:
+        type: string
+        maxLength: 255
+        example: product-name
+      feature_text:
+        type: string
+        format: html
+        example: <HTML>
+      description:
+        type: string
+        format: html
+        example: <HTML>
+      display_title:
+        type: string
+        format: html
+        example: <HTML>
+      SKU:
+        type: string
+        maxLength: 100
+        example: ABC123
+      product_type_id:
+        type: integer
+        minimum: 1
+        example: 2
+      product_type:
+        type: string
+        maxLength: 200
+        example: Wine
+      product_type_name:
+        type: string
+        maxLength: 200
+        example: Wine
+      sales_report_category_id:
+        type: integer
+        example: 123456
+      technical_notes:
+        type: string
+        format: html
+        example: <HTML>
+      secondary_notes:
+        type: string
+        format: html
+        example: <HTML>
+      review_notes:
+        type: string
+        format: html
+        example: <HTML>
+      minimum_quantity:
+        type: integer
+        minimum: 0
+        example: 1
+      maximum_quantity:
+        type: integer
+        minimum: 0
+        example: 12
+      quantity_increment:
+        type: integer
+        minimum: 1
+        example: 2
+      price:
+        type: number
+        format: money
+        example: 49.95
+      weight:
+        type: number
+        format: float
+        example: 3
+      is_taxable:
+        type: boolean
+        example: true
+      is_wine:
+        type: boolean
+        description: Used to calculate shipping
+        example: true
+      display_order:
+        type: integer
+        minimum: 0
+        example: 4
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  ProductAvailability:
+    type: object
+    additionalProperties: false
+    required:
+      - product_status
+      - enum
+    properties:
+      product_status:
+        type: string
+        maxLength: 50
+        example: Active
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  ProductCategory:
+    type: object
+    additionalProperties: false
+    required:
+      - parent_category_id
+      - category_id
+      - category_name
+      - display_html
+      - display_order
+      - create_date
+      - modified_date
+    properties:
+      parent_category_id:
+        type: integer
+        example: 1
+      category_id:
+        type: integer
+        minimum: 1
+        example: 2
+      category_name:
+        type: string
+        maxLength: 200
+        example: Category Name
+      display_html:
+        type: string
+        format: html
+        example: <HTML>
+      display_order:
+        type: integer
+        minimum: 0
+        example: 4
+      create_date:
+        type: string
+        format: date-time
+        example: '2018-08-01T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '2018-08-01T00:00:00.000Z'
+        description: Added in February 2019
+  ProductCreate:
+    type: object
+    additionalProperties: false
+    required:
+      - name
+      - SKU
+      - product_category
+      - product_type
+      - price
+      - is_taxable
+    properties:
+      alcohol_percent:
+        type: number
+        format: float
+        example: 10.5
+      bottles_per_case:
+        type: integer
+        example: 12
+      cost:
+        type: number
+        format: money
+        example: 9.95
+      description:
+        type: string
+        format: html
+        example: <HTML>
+      is_taxable:
+        type: boolean
+        example: true
+      liters_per_bottle:
+        type: number
+        example: 0.75
+      name:
+        type: string
+        maxLength: 255
+        example: 2022 Napa Valley Cabernet Sauvignon
+      price:
+        type: number
+        format: money
+        example: 49.95
+      product_category:
+        type: string
+        maxLength: 200
+        example: Wine
+      product_type:
+        type: string
+        maxLength: 200
+        example: Wine
+      SKU:
+        type: string
+        maxLength: 20
+        example: ABC123
+      varietal:
+        type: string
+        maxLength: 255
+        example: Cabernet Sauvignon
+      vintage:
+        type: integer
+        example: 2022
+      weight:
+        type: number
+        format: float
+        example: 3
+  ProductStatus:
+    type: object
+    additionalProperties: false
+    required:
+      - product_status
+      - enum
+    properties:
+      product_status:
+        type: string
+        maxLength: 50
+        example: Active
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  ProductUpdate:
+    type: object
+    additionalProperties: false
+    required:
+      - name
+      - product_category
+      - product_type
+      - price
+      - is_taxable
+    properties:
+      alcohol_percent:
+        type: number
+        format: float
+        example: 10.5
+      bottles_per_case:
+        type: integer
+        example: 12
+      cost:
+        type: number
+        format: money
+        example: 9.95
+      is_taxable:
+        type: boolean
+        example: true
+      liters_per_bottle:
+        type: number
+        example: 0.75
+      name:
+        type: string
+        maxLength: 255
+        example: 2022 Napa Valley Cabernet Sauvignon
+      price:
+        type: number
+        format: money
+        example: 49.95
+      product_category:
+        type: string
+        maxLength: 200
+        example: Wine
+      product_type:
+        type: string
+        maxLength: 200
+        example: Wine
+      varietal:
+        type: string
+        maxLength: 255
+        example: Cabernet Sauvignon
+      vintage:
+        type: integer
+        example: 2022
+  PurchaseSource:
+    type: object
+    additionalProperties: false
+    required:
+      - purchase_source
+      - enum
+    properties:
+      purchase_source:
+        type: string
+        maxLength: 50
+        example: <PurchaseSource>
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  PurchaseStatus:
+    type: object
+    additionalProperties: false
+    required:
+      - purchase_status
+      - enum
+    properties:
+      purchase_status:
+        type: string
+        maxLength: 50
+        example: Shipped
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  Reservation:
+    type: object
+    additionalProperties: false
+    required:
+      - reservation_id
+      - brand_key
+      - primary_customer_id
+      - party_name
+      - party_size
+      - number_tasting
+      - requested_date
+      - start_date
+      - end_date
+      - cancel_date
+      - contact_phone
+      - contact_email
+      - reservation_type_id
+      - reservation_status
+      - location_id
+      - station_name
+      - host_name
+      - notes
+      - notes_assistance
+      - notes_dietary
+      - is_comped
+      - referred_by_customer_id
+      - create_date
+      - created_by
+      - modified_date
+      - modified_by
+    properties:
+      reservation_id:
+        type: integer
+        example: 123456
+      brand_key:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      primary_customer_id:
+        type: integer
+        example: 123456
+        description: Primary customer
+      party_name:
+        type: string
+        maxLength: 128
+        example: Bob Smith
+      party_size:
+        type: integer
+        example: 123456
+      number_tasting:
+        type: integer
+        example: 123456
+      requested_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      start_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      end_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      cancel_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      contact_phone:
+        type: string
+        maxLength: 50
+        example: <Phone>
+      contact_email:
+        type: string
+        maxLength: 128
+        example: <Email>
+      reservation_type_id:
+        type: integer
+        example: 123456
+      reservation_status:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+      location_id:
+        type: string
+        format: uuid
+        maxLength: 36
+        example: <UUID>
+      station_name:
+        type: string
+        maxLength: 50
+        example: Patio
+      host_name:
+        type: string
+        maxLength: 50
+        example: Robert Smith
+      notes:
+        type: string
+        example: This is a note
+      notes_assistance:
+        type: string
+        example: This is an assistance note
+      notes_dietary:
+        type: string
+        example: This is a dietary note
+      is_comped:
+        type: boolean
+        example: true
+      referred_by_customer_id:
+        type: integer
+        example: 123456
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      created_by:
+        type: string
+        maxLength: 50
+        example: Sally Wilson
+        description: Admin user name
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+      modified_by:
+        type: string
+        maxLength: 50
+        example: Tamara Jones
+        description: Admin user name
+      additional_customer_ids:
+        type: array
+        items:
+          type: integer
+          example: 123456
+        description: Additional customers
+  ReservationStatus:
+    type: object
+    additionalProperties: false
+    required:
+      - reservation_status
+      - enum
+    properties:
+      reservation_status:
+        type: string
+        maxLength: 50
+        example: Booked
+      enum:
+        type: string
+        maxLength: 50
+        example: <ENUM>
+  ReservationType:
+    type: object
+    additionalProperties: false
+    required:
+      - reservation_type_id
+      - reservation_type
+    properties:
+      reservation_type_id:
+        type: integer
+        example: 123
+      reservation_type:
+        type: string
+        maxLength: 50
+        example: Seated Tasting
+  ShippingAddress:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_id
+      - address_id
+      - first_name
+      - last_name
+      - company_name
+      - address_line_1
+      - address_line_2
+      - city
+      - state_name
+      - state_code
+      - region
+      - postal_code
+      - zip_extension
+      - country_name
+      - country_code
+      - phone
+      - birth_date
+      - create_date
+      - modified_date
+    properties:
+      customer_id:
+        type: integer
+        example: 123456
+      address_id:
+        type: integer
+        example: 123456
+      is_shipping_default:
+        type: boolean
+        example: true
+        default: true
+        description: true means that this is a default shipping address
+      is_club_shipping:
+        type: boolean
+        example: true
+        default: true
+        description: true means that this address is used in a club subscription
+      first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+      last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+      company_name:
+        type: string
+        maxLength: 255
+        example: Company
+      address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      address_line_2:
+        type: string
+        maxLength: 255
+        example: Apt 12
+      city:
+        type: string
+        maxLength: 50
+        example: Oakland
+      state_name:
+        type: string
+        maxLength: 255
+        example: California
+        description: State name for US, province name for Canada
+      state_code:
+        type: string
+        maxLength: 2
+        example: CA
+        description: For US and Canada
+      region:
+        type: string
+        maxLength: 50
+        example: <International>
+        description: For addresses outside US and Canada
+      postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+        description: US zip or international postal code
+      zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      country_code:
+        type: string
+        maxLength: 2
+        example: US
+      country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      phone:
+        type: string
+        format: phone
+        maxLength: 50
+        example: <Phone>
+      birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      create_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+      modified_date:
+        type: string
+        format: date-time
+        example: '1970-01-31T00:00:00.000Z'
+        description: Added in February 2019
+  StateCode:
+    type: object
+    additionalProperties: false
+    required:
+      - state_name
+      - state_code
+    properties:
+      state_name:
+        type: string
+        maxLength: 255
+        example: California
+      state_code:
+        type: string
+        maxLength: 2
+        example: CA
+  Subscription:
+    type: object
+    additionalProperties: false
+    required:
+      - customer_id
+      - subscription_id
+      - club_tier_id
+      - club_tier_name
+      - club_tier_description
+      - is_custom_tier
+      - custom_tier_is_editable
+      - custom_tier_minimum_quantity
+      - signup_date
+      - no_ship_start_date
+      - no_ship_end_date
+      - hold_until_date
+      - is_gift
+      - is_pickup
+      - shipper_override_name
+      - billing_address_id
+      - billing_first_name
+      - billing_last_name
+      - billing_company_name
+      - billing_address_line_1
+      - billing_address_line_2
+      - billing_city
+      - billing_state_code
+      - billing_state_name
+      - billing_region
+      - billing_postal_code
+      - billing_zip_extension
+      - billing_phone
+      - billing_birth_date
+      - billing_country_name
+      - shipping_address_id
+      - shipping_first_name
+      - shipping_last_name
+      - shipping_company_name
+      - shipping_address_line_1
+      - shipping_address_line_2
+      - shipping_city
+      - shipping_state_code
+      - shipping_state_name
+      - shipping_region
+      - shipping_postal_code
+      - shipping_zip_extension
+      - shipping_phone
+      - shipping_birth_date
+      - shipping_country_name
+      - payment_method_id
+      - payment_method_name_on_card
+      - payment_method_span
+      - payment_method_expiration_month
+      - payment_method_expiration_year
+      - payment_method_card_type
+      - cancel_date
+      - cancel_reason
+      - modified_date
+      - sales_rep_name
+    properties:
+      customer_id:
+        type: integer
+        example: 123456
+      subscription_id:
+        type: integer
+        example: 123456
+      club_tier_id:
+        type: integer
+        minimum: 1
+        example: 1234
+      club_tier_name:
+        type: string
+        maxLength: 255
+        example: Premier Reds
+      club_tier_description:
+        type: string
+        example: <HTML>
+      is_custom_tier:
+        type: boolean
+        example: false
+      custom_tier_is_editable:
+        type: boolean
+        example: false
+      custom_tier_minimum_quantity:
+        type: integer
+        minimum: 0
+        example: 6
+      signup_date:
+        type: string
+        format: date
+        example: '2018-01-30T00:00:00.000Z'
+        description: Date the subscription was created
+      no_ship_start_date:
+        type: string
+        format: date
+        example: '2018-06-30T00:00:00.000Z'
+      no_ship_end_date:
+        type: string
+        format: date
+        example: '2018-07-30T00:00:00.000Z'
+      hold_until_date:
+        type: string
+        format: date
+        example: '2018-04-30T00:00:00.000Z'
+      is_gift:
+        type: boolean
+        example: true
+      is_pickup:
+        type: boolean
+        example: false
+        description: true if picking up at the winery
+      shipper_override_name:
+        type: string
+        maxLength: 255
+        example: UPS Ground
+        description: Preferred shipping method
+      billing_address_id:
+        type: integer
+        example: 123456
+      billing_first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+      billing_last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+      billing_company_name:
+        type: string
+        maxLength: 255
+        example: Company
+      billing_address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      billing_address_line_2:
+        type: string
+        maxLength: 255
+        example: Apt 12
+      billing_city:
+        type: string
+        maxLength: 50
+        example: Oakland
+      billing_state_code:
+        type: string
+        maxLength: 2
+        example: CA
+        description: For US and Canada
+      billing_state_name:
+        type: string
+        maxLength: 255
+        example: California
+        description: State name for US, province name for Canada
+      billing_region:
+        type: string
+        maxLength: 50
+        example: <International>
+        description: For addresses outside US and Canada
+      billing_postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+        description: US zip or international postal code
+      billing_zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      billing_phone:
+        type: string
+        format: phone
+        maxLength: 50
+        example: <Phone>
+      billing_birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      billing_country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      shipping_address_id:
+        type: integer
+        example: 123456
+      shipping_first_name:
+        type: string
+        maxLength: 255
+        example: Bob
+      shipping_last_name:
+        type: string
+        maxLength: 255
+        example: Smith
+      shipping_company_name:
+        type: string
+        maxLength: 255
+        example: Company
+      shipping_address_line_1:
+        type: string
+        maxLength: 255
+        example: 123 Main Street
+      shipping_address_line_2:
+        type: string
+        maxLength: 255
+        example: Apt 12
+      shipping_city:
+        type: string
+        maxLength: 50
+        example: Oakland
+      shipping_state_code:
+        type: string
+        maxLength: 2
+        example: CA
+        description: For US and Canada
+      shipping_state_name:
+        type: string
+        maxLength: 255
+        example: California
+        description: State name for US, province name for Canada
+      shipping_region:
+        type: string
+        maxLength: 50
+        example: <International>
+        description: For addresses outside US and Canada
+      shipping_postal_code:
+        type: string
+        maxLength: 50
+        example: 94611
+        description: US zip or international postal code
+      shipping_zip_extension:
+        type: string
+        maxLength: 4
+        example: 1234
+        description: For US addresses only
+      shipping_phone:
+        type: string
+        format: phone
+        maxLength: 50
+        example: <Phone>
+      shipping_birth_date:
+        type: string
+        format: date
+        example: '1970-01-31T00:00:00.000Z'
+      shipping_country_name:
+        type: string
+        maxLength: 255
+        example: United States
+      payment_method_id:
+        type: integer
+        minimum: 1
+        example: 123
+      payment_method_name_on_card:
+        type: string
+        maxLength: 250
+        example: Bob Smith
+      payment_method_span:
+        type: string
+        maxLength: 4
+        example: 2212
+        description: Last 4 digits of card number
+      payment_method_expiration_month:
+        type: integer
+        minimum: 1
+        maximum: 12
+        example: 10
+      payment_method_expiration_year:
+        type: integer
+        example: 2021
+      payment_method_card_type:
+        type: string
+        maxLength: 50
+        example: <CardType>
+      cancel_date:
+        type: string
+        format: date
+        example: '2018-12-30T00:00:00.000Z'
+      cancel_reason:
+        type: string
+        example: <HTML>
+      modified_date:
+        type: string
+        format: date-time
+        example: '2018-08-01T00:00:00.000Z'
+        description: Added in February 2019
+      sales_rep_name:
+        type: string
+        maxLength: 50
+        example: Bob Smith
+parameters: {}
+responses: {}
+securityDefinitions:
+  basic-auth:
+    type: basic
+security:
+  - basic-auth: []
+tags: []
